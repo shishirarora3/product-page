@@ -1,0 +1,1 @@
+export { isClicked } from './genericAcion';
