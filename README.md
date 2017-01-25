@@ -11,6 +11,7 @@
   1)npm i 
   2)npm start
   
+  open http://localhost:8995/
   
   
   technologies:
