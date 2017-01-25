@@ -8,6 +8,7 @@
   input{
     height: 50px;
     width: 200px;
+    font-size: inherit;
   }
 }
 
@@ -17,11 +18,11 @@
   align-self: flex-end;
   justify-content: center;
   display: flex;
-  font-size: 1.1em;
   color: white;
   background: #0e6aef;
   border: 0;
   z-index: 0;
   cursor: pointer;
   text-transform: uppercase;
+  font-size: inherit;
 }
