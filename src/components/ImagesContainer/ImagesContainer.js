@@ -4,13 +4,19 @@ import {connect} from 'react-redux';
 import s from './ImagesContainer.scss';
 import {getImages} from '../../selectors';
 import _ from 'lodash';
+import {removeImage} from '../../actions';
 class ImagesContainer extends Component {
-
     render() {
-        const {imageList} = this.props;
+        const {imageList, removeImage} = this.props;
         return (<ul className={s.imagesContainer}>
             {
                 _.map(imageList, (imgSrc, i) => (<li key={i}>
+                    <div
+                        onClick={() => {
+                            removeImage(imgSrc);
+                        }}
+                        className={s.cross}>x
+                    </div>
                     <img
                         role='presentation'
                         src={imgSrc}/>
@@ -20,7 +26,7 @@ class ImagesContainer extends Component {
     }
 }
 
-ImagesContainer.defaultProps = {
+ImagesContainer.propTypes = {
     imageList: PropTypes.array
 };
 
@@ -29,7 +35,7 @@ ImagesContainer.defaultProps = {
 };
 
 export default withStyles(s)(
-    connect((state) => {
-        const {imageList} = getImages(state);
-        return {imageList};
-    }, {})(ImagesContainer));
+    connect(
+        state => getImages(state),
+        {removeImage}
+    )(ImagesContainer));

@@ -39,7 +39,7 @@ $borderColor: #979797;
     transform: translate3d(5%,23%,0);
     transition: 0.2s ease;
     z-index:2;
-    color: #aaaaaa;
+    color: $borderColor;
     cursor: pointer;
   }
 }

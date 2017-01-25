@@ -67,4 +67,4 @@ FileUpload.defaultProps = {
     typeRegex: /^image/
 };
 export default withStyles(s)(
-    connect((state) => {}, {addImage})(FileUpload));
+    connect(()=>{}, {addImage})(FileUpload));
