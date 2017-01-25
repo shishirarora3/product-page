@@ -2,24 +2,27 @@ import React, {PropTypes, Component} from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './FileUpload.scss';
 import {connect} from 'react-redux';
-import cx from 'classnames'
+import cx from 'classnames';
+import {getImages} from '../../selectors';
+import {addImage} from '../../actions';
+
+
 class FileUpload extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {imageList: ''};
     }
 
     readFile = (file) => {
         const fileReader = new FileReader();
+        const {addImage} = this.props;
         fileReader.onload = (event) => {
             const str = event.target.result;
-            this.setState({imageList: [...this.state.imageList, str]});
+            addImage(str);
         };
         file && fileReader.readAsDataURL(file);
     };
     changeHandler = (e) => {
         const {multiple, typeRegex} = this.props;
-        const {imageList} = this.state;
 
         if (multiple) {
             const files = Array.from(e.target.files);
@@ -35,7 +38,6 @@ class FileUpload extends React.Component {
     };
 
     render() {
-        const {imageList} = this.state;
         const {multiple} = this.props;
         return <div className={cx(s.container, s.wrap)}>
 
@@ -51,22 +53,19 @@ class FileUpload extends React.Component {
                     }}
                     onChange={this.changeHandler}/>
             </div>
-            <ul className={s.imagesContainer}>
-                {
-                    imageList && imageList.map((imgSrc, i) => <li key={i}>
-                        <img
-                            role='presentation'
-                            src={imgSrc}/>
-                    </li>)
-                }
-            </ul>
+
         </div>
     }
 }
 
-FileUpload.propTypes = {};
+FileUpload.propTypes = {
+    multiple: PropTypes.bool,
+    typeRegex: PropTypes.object
+};
 
+FileUpload.defaultProps = {
+    multiple: true,
+    typeRegex: /^image/
+};
 export default withStyles(s)(
-    connect(() => {
-        return {};
-    }, {})(FileUpload));
+    connect((state) => {}, {addImage})(FileUpload));

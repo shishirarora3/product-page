@@ -1,0 +1,14 @@
+.imagesContainer{
+  display: flex;
+  flex-direction: row;
+  max-height: 200px;
+  justify-content: space-between;
+  li{
+    flex-shrink: 1;
+    display: flex;
+  }
+  img{
+    max-width: 100%;
+  }
+}
+

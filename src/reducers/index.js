@@ -1,7 +1,7 @@
 
 import { combineReducers } from 'redux';
-import { clicked } from './generic';
+import { imageList } from './imageList';
 
 export default combineReducers({
-    clicked
+    imageList
 });

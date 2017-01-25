@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import s from './FormBuilder.scss';
 import FileUpload from '../FileUpload';
 import Input from '../Input';
+import ImagesContainer from '../ImagesContainer';
+
 const FormBuilder = (props) =>
     (<form
         className = {s.container}
@@ -15,8 +17,15 @@ const FormBuilder = (props) =>
             multiple={true}
             typeRegex={/^image/}
         />
+        <ImagesContainer/>
         <button type='submit'>submit</button>
+
     </form>);
+
+FormBuilder.proptypes = {
+    action: PropTypes.string,
+    method: PropTypes.string
+};
 
 FormBuilder.defaultProps = {
     action: "http://localhost:8000",

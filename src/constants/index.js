@@ -1,2 +1,2 @@
 // Action constants
-export const GENERIC_CONSTANT = 'GENERIC_CONSTANT';
+export const ADD_IMAGE = 'ADD_IMAGE';

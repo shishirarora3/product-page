@@ -1,1 +1,1 @@
-export { isClicked } from './genericAcion';
+export { addImage } from './addImage';
