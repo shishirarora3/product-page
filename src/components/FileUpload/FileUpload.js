@@ -40,10 +40,8 @@ class FileUpload extends React.Component {
     render() {
         const {multiple} = this.props;
         return <div className={cx(s.container, s.wrap)}>
-
-                <label htmlFor="file">file</label>
             <div className={s.button}>
-                <span>Upload</span>
+                <span>Upload File{multiple?'s':''}</span>
                 <input
                     type='file'
                     id='file'

@@ -1,20 +1,46 @@
 
-
+$borderColor: #979797;
 .container{
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+
   input{
     height: 50px;
-    width: 200px;
+    width: 100%;
     font-size: inherit;
+    background: white;
+    opacity:1;
+    z-index:1;
+    border-width: 1px 0;
+    border-color: $borderColor;
+    &:focus {
+      + label{
+        z-index:1;
+        display:none;
+        color: $borderColor;
+      }
+    }
+  }
+  &.filled{
+    input{
+      z-index: 10;
+    }
+  }
+  label{
+    text-transform: capitalize;
+    position: absolute;
+    transform: translate3d(5%,23%,0);
+    z-index:2;
+    color: #aaaaaa;
+    cursor: pointer;
   }
 }
 
 .button{
   height: 50px;
-  width: 200px;
+  width: 100%;
   align-self: flex-end;
   justify-content: center;
   display: flex;
