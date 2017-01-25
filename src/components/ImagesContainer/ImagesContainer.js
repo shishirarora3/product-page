@@ -31,6 +31,5 @@ ImagesContainer.defaultProps = {
 export default withStyles(s)(
     connect((state) => {
         const {imageList} = getImages(state);
-        console.log(imageList);
         return {imageList};
     }, {})(ImagesContainer));

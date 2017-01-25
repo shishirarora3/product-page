@@ -18,7 +18,7 @@ const FormBuilder = (props) =>
             typeRegex={/^image/}
         />
         <ImagesContainer/>
-        <button type='submit'>submit</button>
+        <button className={s.button} type='submit'>submit</button>
 
     </form>);
 

@@ -42,7 +42,8 @@ class FileUpload extends React.Component {
         return <div className={cx(s.container, s.wrap)}>
 
                 <label htmlFor="file">file</label>
-            <div className={s.fileContainer}>
+            <div className={s.button}>
+                <span>Upload</span>
                 <input
                     type='file'
                     id='file'
