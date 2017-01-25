@@ -1,0 +1,41 @@
+@import '../Input/Input.scss';
+.imagesContainer{
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  justify-content: space-between;
+  li{
+    flex-shrink: 1;
+    display: flex;
+  }
+  img{
+    max-width: 100%;
+  }
+}
+.wrap{
+  flex-wrap: wrap;
+}
+
+
+
+.fileContainer{
+  input{
+    opacity: 0;
+  }
+
+  height: 50px;
+  width: 200px;
+  border: 1px solid #c2c4c7;
+}
+
+button{
+  height: 50px;
+  width: 200px;
+  align-self: flex-end;
+  justify-content: center;
+  display: flex;
+  font-size: 1.1em;
+  color: white;
+  background: #9dc5ff;
+  border: 0;
+}
