@@ -18,20 +18,26 @@ $borderColor: #979797;
     &:focus {
       + label{
         z-index:1;
-        display:none;
         color: $borderColor;
+        transform: translate3d(5%,-100%,0);
       }
     }
   }
   &.filled{
     input{
       z-index: 10;
+      + label{
+        z-index:1;
+        color: $borderColor;
+        transform: translate3d(5%,-100%,0);
+      }
     }
   }
   label{
     text-transform: capitalize;
     position: absolute;
     transform: translate3d(5%,23%,0);
+    transition: 0.2s ease;
     z-index:2;
     color: #aaaaaa;
     cursor: pointer;
