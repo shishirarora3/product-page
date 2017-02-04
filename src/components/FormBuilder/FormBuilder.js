@@ -28,7 +28,7 @@ FormBuilder.proptypes = {
 };
 
 FormBuilder.defaultProps = {
-    action: "http://localhost:8000",
+    action: "http://localhost:8000", //TODO: implement this service on node endsse
     method: "post"
 };
 

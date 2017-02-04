@@ -21,6 +21,7 @@ class FileUpload extends React.Component {
         };
         file && fileReader.readAsDataURL(file);
     };
+
     changeHandler = (e) => {
         const {multiple, typeRegex} = this.props;
 
@@ -67,4 +68,4 @@ FileUpload.defaultProps = {
     typeRegex: /^image/
 };
 export default withStyles(s)(
-    connect(()=>{}, {addImage})(FileUpload));
+    connect((state)=>{return {};}, {addImage})(FileUpload));
