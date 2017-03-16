@@ -201,69 +201,6 @@ const config = {
 // Configuration for the client-side bundle (client.js)
 // -----------------------------------------------------------------------------
 
-const clientConfig = extend(true, {}, config, {
-  entry: './client.js',
-
-  output: {
-    filename: DEBUG ? '[name].js?[chunkhash]' : '[name].[chunkhash].js',
-    chunkFilename: DEBUG ? '[name].[id].js?[chunkhash]' : '[name].[id].[chunkhash].js',
-  },
-
-  target: 'web',
-
-  plugins: [
-
-    new LodashModuleReplacementPlugin({
-      paths: true
-    }),
-
-    // Define free variables
-    // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-    new webpack.DefinePlugin({ ...GLOBALS, 'process.env.BROWSER': true }),
-
-    // Emit a file with assets paths
-    // https://github.com/sporto/assets-webpack-plugin#options
-    new AssetsPlugin({
-      path: path.resolve(__dirname, '../build'),
-      filename: 'assets.js',
-      processOutput: x => `module.exports = ${JSON.stringify(x)};`,
-    }),
-
-    // Assign the module and chunk ids by occurrence count
-    // Consistent ordering of modules required if using any hashing ([hash] or [chunkhash])
-    // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
-    new webpack.optimize.OccurenceOrderPlugin(true),
-
-    ...DEBUG ? [] : [
-
-      // Search for equal or similar files and deduplicate them in the output
-      // https://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-      new webpack.optimize.DedupePlugin(),
-
-      // Minimize all JavaScript output of chunks
-      // https://github.com/mishoo/UglifyJS2#compressor-options
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          screw_ie8: true, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
-          warnings: false,
-        },
-        output: { comments: false }
-        // ** LEGAL - IMPORTANT ** - this removes all comment
-        // including copyrights and * decrease the bundle size *
-        // By default comments with @license, @preserve or starting with /*! are preserved.
-      }),
-
-      // A plugin for a more aggressive chunk merging strategy
-      // https://webpack.github.io/docs/list-of-plugins.html#aggressivemergingplugin
-      new webpack.optimize.AggressiveMergingPlugin(),
-      new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10000 })
-    ],
-  ],
-
-  // Choose a developer tool to enhance debugging
-  // http://webpack.github.io/docs/configuration.html#devtool
-  devtool: 'source-map',
-});
 
 const componentsSliderConfig = extend(true, {}, config, {
     entry: './components/ComponentsSlider/ComponentsSlider.js',
