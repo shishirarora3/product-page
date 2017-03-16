@@ -1,5 +1,5 @@
 {
-  "name": "component-slider",
+  "name": "react-component-carousal",
   "version": "1.0.1",
   "description": "used to show react components in carousal format",
   "main": "./build/public/assets/main.js",
