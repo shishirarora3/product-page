@@ -256,15 +256,7 @@ const clientConfig = extend(true, {}, config, {
       // A plugin for a more aggressive chunk merging strategy
       // https://webpack.github.io/docs/list-of-plugins.html#aggressivemergingplugin
       new webpack.optimize.AggressiveMergingPlugin(),
-      new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10000 }),
-      new webpack.optimize.CommonsChunkPlugin({
-        // process all children of the main chunk
-        // if omitted it would process all chunks
-        name: DEBUG ? 'common-[name].js?[chunkhash]' : 'common-[name].[chunkhash].js',
-        // create a additional async chunk for the common modules
-        // which is loaded in parallel to the requested chunks
-        async: true
-      })
+      new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10000 })
     ],
   ],
 
@@ -273,6 +265,57 @@ const clientConfig = extend(true, {}, config, {
   devtool: 'source-map',
 });
 
+const componentsSliderConfig = extend(true, {}, config, {
+    entry: './components/ComponentsSlider/ComponentsSlider.js',
+
+    output: {
+        filename: 'main.js',
+    },
+
+    target: 'web',
+
+    plugins: [
+
+        new LodashModuleReplacementPlugin({
+            paths: true
+        }),
+
+        // Define free variables
+        // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+        new webpack.DefinePlugin({ ...GLOBALS, 'process.env.BROWSER': true }),
+
+
+
+        // Assign the module and chunk ids by occurrence count
+        // Consistent ordering of modules required if using any hashing ([hash] or [chunkhash])
+        // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
+        new webpack.optimize.OccurenceOrderPlugin(true),
+
+        ...DEBUG ? [] : [
+
+                // Search for equal or similar files and deduplicate them in the output
+                // https://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
+                new webpack.optimize.DedupePlugin(),
+
+                // Minimize all JavaScript output of chunks
+                // https://github.com/mishoo/UglifyJS2#compressor-options
+                new webpack.optimize.UglifyJsPlugin({
+                    compress: {
+                        screw_ie8: true, // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+                        warnings: false,
+                    },
+                    output: { comments: false }
+                    // ** LEGAL - IMPORTANT ** - this removes all comment
+                    // including copyrights and * decrease the bundle size *
+                    // By default comments with @license, @preserve or starting with /*! are preserved.
+                })
+            ],
+    ],
+
+    // Choose a developer tool to enhance debugging
+    // http://webpack.github.io/docs/configuration.html#devtool
+    devtool: 'source-map',
+});
 //
 // Configuration for the server-side bundle (server.js)
 // -----------------------------------------------------------------------------
@@ -291,9 +334,7 @@ const serverConfig = extend(true, {}, config, {
     /^\.\/assets$/,
     function filter(context, request, cb) {
       const isExternal =
-        request.match(/^[@a-z][a-z\/\.\-0-9]*$/i) &&
-        !request.match(/^react-routing/) &&
-        !context.match(/[\\/]react-routing/);
+        request.match(/^[@a-z][a-z\/\.\-0-9]*$/i);
       cb(null, Boolean(isExternal));
     },
   ],
@@ -320,6 +361,6 @@ const serverConfig = extend(true, {}, config, {
   },
 
   devtool: 'source-map',
-});
+});//componentSlider: './components/ComponentsSlider/ComponentsSlider.js'
 
-export default [clientConfig, serverConfig];
+export default [componentsSliderConfig, serverConfig];

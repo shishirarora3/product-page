@@ -1,5 +1,5 @@
 
-# file uploader
+# Component Sider
   install steps: 
   1)npm i 
   2)npm start
