@@ -1,12 +1,12 @@
 
 # Component Sider
-  install steps: 
-  1)npm i 
-  2)npm start
-  
-  open http://localhost:8995/
-  
-  
+  build steps:
+  1)npm run build
+
+  usage :
+
+  WIP
+
   technologies:
   1)react
   2)isomorphic/universal app
