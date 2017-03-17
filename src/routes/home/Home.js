@@ -66,18 +66,25 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                     </div>
                 </div>
                 <div className={s.right}>
-                    <div>{formattedPriceValue}<sub>{priceQualifier}</sub></div>
-
-                    <div>{_.map(Promotions, (p,i)=><div key={i}>{_.get(p,'Description[0].shortDescription')}</div>)}</div>
+                    <div className={s.price}>{formattedPriceValue}<sub>{priceQualifier}</sub></div>
+                    <div className={s.hr}/>
+                        <div>{_.map(Promotions, (p, i) => <div
+                            key={i}>{_.get(p, 'Description[0].shortDescription')}</div>)}
+                        </div>
+                    <div className={s.hr}/>
                     <input type="number" min={1}/>
                     <div className={s.buttonGroup}>
-                        {_.includes(['0','1'], purchasingChannelCode) && <button>ADD TO CART</button>}
-                        {_.includes(['0','2'], purchasingChannelCode) && <button>PICK UP IN STORE</button>}
+                        {_.includes(['0', '1'], purchasingChannelCode) && <button>ADD TO CART</button>}
+                        {_.includes(['0', '2'], purchasingChannelCode) && <button>PICK UP IN STORE</button>}
                     </div>
-                    <div><div className={s.verticalSeparator}>Returns</div><div dangerouslySetInnerHTML={{ __html: `<p>${legalCopy}</p>` }}></div></div>
+                    <div>
+                        <div className={s.verticalSeparator}>Returns</div>
+                        <div dangerouslySetInnerHTML={{__html: `<p>${legalCopy}</p>`}}></div>
+                    </div>
                     <h2>Product highlights</h2>
                     <ul>
-                        {_.map(ItemDescription, (des, i) => <li key={i} dangerouslySetInnerHTML={{ __html: des }}></li>)}
+                        {_.map(ItemDescription, (des, i) => <li key={i}
+                                                                dangerouslySetInnerHTML={{__html: des}}></li>)}
                     </ul>
                 </div>
             </div>

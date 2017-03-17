@@ -12,13 +12,19 @@
   height:700px;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin: 2rem;
   &>div{
     width:400px;
   }
   button{
     background: $SkyBlue;
   }
-  margin: 2rem;
+  .hr{
+    border:1px solid $greyBG;
+    width:100%;
+    display: inline-block;
+    margin:0.8em 0;
+  }
 }
 .preview{
   display:flex;
@@ -42,4 +48,12 @@
 
 .buttonGroup{
   /*@extend .row;*/
+}
+
+.price{
+  font-weight: bold;
+  font-size: 1.2em;
+  sub{
+    font-size: 0.5em;
+  }
 }
