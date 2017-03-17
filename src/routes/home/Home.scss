@@ -47,7 +47,23 @@
 }
 
 .buttonGroup{
-  /*@extend .row;*/
+  display: block;
+  width:100%;
+  button{
+    width:40%;
+    text-align: center;
+
+    &.left{
+      float:left;
+      background:$Black;
+      color: $White;
+    }
+    &.right{
+      float:right;
+      background:$Red;
+      color: $White;
+    }
+  }
 }
 
 .price{

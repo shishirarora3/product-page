@@ -6,10 +6,18 @@ import _ from 'lodash';
 
 
 class Home extends Component { // eslint-disable-line react/prefer-stateless-function
+
+    constructor(props,{setTitle, setMeta}){
+        super(props);
+        const CatalogEntryView = _.get(props.data, 'CatalogEntryView[0]');
+        const title = this.title = CatalogEntryView.title;
+        setTitle(title);
+        setMeta(title);
+    }
+
     state = {selectedIndex: 0};
-    onChangeHandler = (selectedIndex) => {
-        this.setState({selectedIndex});
-    };
+
+    onChangeHandler = selectedIndex => this.setState({selectedIndex});
 
     render() {
 
@@ -18,21 +26,20 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
         const imageList = _.get(data, 'CatalogEntryView[0].Images[0].AlternateImages', []).map(i => _.get(i, 'image'));
         const CatalogEntryView = _.get(data, 'CatalogEntryView[0]');
         const [ItemDescription = [], OfferPrice, PackageDimension, Promotions, purchasingChannelCode,
-            inventoryStatus, title, legalCopy] = _.at(CatalogEntryView, [
+            inventoryStatus, legalCopy] = _.at(CatalogEntryView, [
             'ItemDescription[0].features',
             'Offers[0].OfferPrice[0]',
             'PackageDimension',
             'Promotions',
             'purchasingChannelCode',
             'inventoryStatus',
-            'title',
             'ReturnPolicy[0].legalCopy'
         ]);
         const [currencyCode, formattedPriceValue, priceQualifier, priceValue] = _.at(OfferPrice, ['currencyCode', 'formattedPriceValue', 'priceQualifier', 'priceValue']);
         return (
             <div className={s.container}>
                 <div>
-                    <h1>{title}</h1>
+                    <h1>{this.title}</h1>
                     <ComponentsSlider
                         isCircular={true}
                         autoplay={false}
@@ -74,8 +81,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                     <div className={s.hr}/>
                     <input type="number" min={1}/>
                     <div className={s.buttonGroup}>
-                        {_.includes(['0', '1'], purchasingChannelCode) && <button>ADD TO CART</button>}
-                        {_.includes(['0', '2'], purchasingChannelCode) && <button>PICK UP IN STORE</button>}
+                        {_.includes(['0', '1'], purchasingChannelCode) && <button className={s.left}>ADD TO CART</button>}
+                        {_.includes(['0', '2'], purchasingChannelCode) && <button className={s.right}>PICK UP IN STORE</button>}
                     </div>
                     <div>
                         <div className={s.verticalSeparator}>Returns</div>
@@ -84,7 +91,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                     <h2>Product highlights</h2>
                     <ul>
                         {_.map(ItemDescription, (des, i) => <li key={i}
-                                                                dangerouslySetInnerHTML={{__html: des}}></li>)}
+                                                                dangerouslySetInnerHTML={{__html: des}}/>)}
                     </ul>
                 </div>
             </div>
@@ -93,5 +100,9 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
 
 }
 
+Home.contextTypes={
+    setTitle: PropTypes.func.isRequired,
+    setMeta: PropTypes.func.isRequired
+}
 
 export default withStyles(s)(Home);
