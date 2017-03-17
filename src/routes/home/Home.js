@@ -3,7 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.scss';
 import ComponentsSlider from '../../components/ComponentsSlider';
 import _ from 'lodash';
-
+import cx from 'classnames';
 
 class Home extends Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -15,13 +15,14 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
         setMeta(title);
     }
 
-    state = {selectedIndex: 0};
+    state = {selectedIndex: 0,
+        clicked: false};
 
     onChangeHandler = selectedIndex => this.setState({selectedIndex});
 
     render() {
 
-        const selectedIndex = this.state.selectedIndex;
+        const {selectedIndex, clicked} = this.state;
         const data = this.props.data;
         const imageList = _.get(data, 'CatalogEntryView[0].Images[0].AlternateImages', []).map(i => _.get(i, 'image'));
         const CatalogEntryView = _.get(data, 'CatalogEntryView[0]');
@@ -72,7 +73,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                         </ComponentsSlider>
                     </div>
                 </div>
-                <div className={s.right}>
+                <div className={s.rightSide}>
                     <div className={s.price}>{formattedPriceValue}<sub>{priceQualifier}</sub></div>
                     <div className={s.hr}/>
                         <div>{_.map(Promotions, (p, i) => <div
@@ -84,9 +85,12 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                         {_.includes(['0', '1'], purchasingChannelCode) && <button className={s.left}>ADD TO CART</button>}
                         {_.includes(['0', '2'], purchasingChannelCode) && <button className={s.right}>PICK UP IN STORE</button>}
                     </div>
-                    <div>
-                        <div className={s.verticalSeparator}>Returns</div>
-                        <div dangerouslySetInnerHTML={{__html: `<p>${legalCopy}</p>`}}></div>
+                    <div className={s.row} onClick={()=>this.setState()}>
+                        <div className={s.returns}>Returns</div>
+                        <div className={cx({
+                            [s.clicked]: clicked,
+                            [s.dots]: true
+                        })} dangerouslySetInnerHTML={{__html: `<p>${legalCopy}</p>`}}></div>
                     </div>
                     <h2>Product highlights</h2>
                     <ul>

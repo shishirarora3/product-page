@@ -41,7 +41,7 @@
     width:100%;
   }
 }
-.right{
+.rightSide{
   @extend .column;
   line-height: 1.4em;
 }
@@ -49,10 +49,12 @@
 .buttonGroup{
   display: block;
   width:100%;
+  clear: both;
+  overflow: hidden;
   button{
     width:40%;
     text-align: center;
-
+    line-height: 2em;
     &.left{
       float:left;
       background:$Black;
@@ -72,4 +74,18 @@
   sub{
     font-size: 0.5em;
   }
+}
+.dots{
+  overflow: hidden;
+  height: 4em;
+  p{
+    margin:0;
+  }
+}
+.dots.clicked{
+  height: auto;
+}
+.returns:after{
+  content: '|';
+  padding: 0 0.5em;
 }
