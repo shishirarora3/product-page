@@ -75,7 +75,14 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                         >
                             {
                                 _.map(imageList, (imgSrc, i) => (
-                                    <div key={i} className={s.cell} onClick={() => this.onChangeHandler(i)}>
+                                    <div
+                                        key={i}
+                                        className={cx({
+                                            [s.cell]: true,
+                                            [s.selected]: i===selectedIndex
+                                        })}
+                                        onClick={() => this.onChangeHandler(i)}
+                                    >
                                         <img
                                             role='presentation'
                                             src={imgSrc}/>
