@@ -94,6 +94,9 @@
 }
 .dots.clicked{
   height: auto;
+  &:after{
+    display:none;
+  }
 }
 .returns:after{
   content: '|';
