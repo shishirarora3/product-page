@@ -10,7 +10,7 @@
 .container{
   @extend .row;
   height:700px;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   margin: 2rem;
   &>div{
