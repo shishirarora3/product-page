@@ -1,5 +1,5 @@
 
-# Component Sider
+# Ecommerce Product Page
   STEPS TO INSTALL:
   1)npm i
   2)npm start
