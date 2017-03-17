@@ -1,0 +1,45 @@
+@import '../../commonstyles/variables.scss';
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+}
+.container{
+  @extend .row;
+  height:700px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  &>div{
+    width:400px;
+  }
+  button{
+    background: $SkyBlue;
+  }
+  margin: 2rem;
+}
+.preview{
+  display:flex;
+  justify-content: center;
+  img{
+    width:300px;
+    height: 300px;
+  }
+}
+.cell{
+  width: 100px;
+  height:100px;
+  img{
+    width:100%;
+  }
+}
+.right{
+  @extend .column;
+  line-height: 1.4em;
+}
+
+.buttonGroup{
+  /*@extend .row;*/
+}

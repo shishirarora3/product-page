@@ -2,6 +2,5 @@
   "name": "ComponentsSlider",
   "version": "0.0.0",
   "private": true,
-  "main": "./ComponentsSlider.js",
-  "description": "To present any array of components in sliding format"
+  "main": "./ComponentsSlider.js"
 }

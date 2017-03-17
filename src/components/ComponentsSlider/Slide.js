@@ -9,18 +9,16 @@ import React, { PropTypes } from 'react';
  * @constructor
  */
 const Slide = ({ sliderLength, classNames: s, children }) => {
-  const sliderItemWidth = 100 / sliderLength;
-  const slideStyle = {
-    width: `${sliderItemWidth}%`
-  };
-  return (
+      const sliderItemWidth = 100 / sliderLength;
+      const slideStyle = {
+        width: `${sliderItemWidth}%`
+      };
+    return (
 
-    <div className={s.slide} style={slideStyle}>
-      <div className={s['image-container']}>
+      <div className={s.slide} style={slideStyle}>
         {children}
       </div>
-    </div>
-  );
+    );
 };
 
 Slide.propTypes = {

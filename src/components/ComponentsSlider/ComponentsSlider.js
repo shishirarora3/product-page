@@ -3,79 +3,79 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './ComponentsSlider.scss';
 import Slider from './Slider';
 
-const defaultClassNames = {
-  slider: s.slider,
-  icon: s.icon,
-  sliderContainer: s.sliderContainer,
-  'slider-next': s['slider-next'],
-  'slider-prev': s['slider-prev'],
-  'slider-next-pos': s['slider-next-pos'],
-  'slider-prev-pos': s['slider-prev-pos'],
-  'transition--0': s['transition--0'],
-  slide: s.slide,
-  'slider-list': s['slider-list'],
-  'slider-track': s['slider-track'],
-  'image-container': s['image-container']
-};
-
 /**
  *
- * @param noOfSlidesShown: only these will be download and shown on first fold else
- * all will be lazily loaded
+ * @param noOfSlidesShown
  * @param autoplay
- * @param items: These are array of components
- * @param classNames:  ClassNames are configurable
- * @param selectedIndex: used to send force selection from top on each component
- * update. Will not cause animation in the process
- * @param isCircular: to make slider circulate without jerk
+ * @param children
+ * @param classNames
+ * @param onChangeHandler: fires when we click on slider left or right
  * @returns {XML}
  * @constructor
  */
-    
 const ComponentsSlider = ({
   noOfSlidesShown,
-  autoplay, children: items,
-  classNames, isCircular,
-  onChangeHandler, selectedIndex
+  autoplay, sliderWrap, isCircular, styles, index, children: items,
+  onChangeHandler
 }) => {
+  const classNames = {
+    slider: s.slider,
+    icon: s.icon,
+    mySlider: s.mySlider,
+    'slider-next': s['slider-next'],
+    'slider-prev': s['slider-prev'],
+    'transition--0': s['transition--0'],
+    slide: s.slide,
+    'slider-list': s['slider-list'],
+    'slider-track': s['slider-track'],
+    'image-container': s['image-container']
+  };
+
+  // if item length 6 , we need to show 5 , then circularLength is 10.
   const circularLength = Math.ceil((items.length) / noOfSlidesShown) * noOfSlidesShown;
   const paddingArr = new Array(circularLength - items.length);
   let circularItems = [...items, ...paddingArr];
-  // for making the slider look circular without jerk
-    if (isCircular) {
-      circularItems = [
-        ...circularItems.slice(circularItems.length - noOfSlidesShown, circularItems.length),
-        ...circularItems,
-        ...circularItems.slice(0, noOfSlidesShown)
-      ];
-    }
+  if (isCircular) {
+    circularItems = [
+      ...circularItems.slice(circularItems.length - noOfSlidesShown, circularItems.length),
+      ...circularItems,
+      ...circularItems.slice(0, noOfSlidesShown)
+    ];
+  }
+  if (styles) {
+    classNames['slider-next'] = styles['slider-next'];
+    classNames['slider-prev'] = styles['slider-prev'];
+  }
   return (<Slider
     autoplay={autoplay}
     circularItems={circularItems}
-    classNames={{ ...defaultClassNames, ...classNames }}
+    className={s.mySlider}
+    classNames={classNames}
     noOfSlidesShown={noOfSlidesShown}
     boundryIndexes={[1, circularItems.length - 1]}
     incrementTranslationUnits={noOfSlidesShown}
-    isCircular={isCircular}
     onChangeHandler={onChangeHandler}
-    selectedIndex={selectedIndex}
+    sliderWrap={sliderWrap}
+    isCircular={isCircular}
+    index={index}
   />);
 };
 ComponentsSlider.propTypes = {
   autoplay: PropTypes.bool,
   noOfSlidesShown: PropTypes.number,
   children: PropTypes.array.isRequired,
-  classNames: PropTypes.object,
-  selectedIndex: PropTypes.number,
+  styles: PropTypes.object,
+  onChangeHandler: PropTypes.func,
+  sliderWrap: PropTypes.bool,
   isCircular: PropTypes.bool,
-  onChangeHandler: PropTypes.func
+  index: PropTypes.number
 };
 ComponentsSlider.defaultProps = {
   autoplay: false,
   noOfSlidesShown: 1,
-  classNames: defaultClassNames,
-  selectedIndex: 0,
-  isCircular: true,
+  sliderWrap: true,
+  isCircular: false,
+  index: 0,
   onChangeHandler: () => {}
 };
 export default withStyles(s)(ComponentsSlider);

@@ -31,6 +31,7 @@
     "node-fetch": "1.5.2",
     "qs": "^6.2.1",
     "react": "^15.4.2",
+    "react-component-carousal": "^1.0.1",
     "react-dom": "^15.4.2",
     "react-redux": "~4.4.5",
     "redux": "~3.4.0",

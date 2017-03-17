@@ -1,67 +1,74 @@
 import React, { PropTypes, Component } from 'react';
 import Slide from './Slide';
-import classNames from 'classnames';
 
 class Slider extends Component {
   /**
    *
    * @param props
-   */
+     */
   constructor(props) {
     super(props);
-    const { circularItems, selectedIndex } = this.props;
+    this.state = {
+      leftIndex: props.index,
+      isAnimation: false,
+      isLeft: true
+    };
+    this.leftOffset = 0;
+    if (props.isCircular) {
+      this.state.leftIndex++;
+      this.leftOffset++;
+    }
+  }
+
+  // For the first time, items to render needs to be updated
+  componentWillMount() {
+    const { circularItems } = this.props;
     const sliderLength = circularItems.length;
     // On slide we will first load empty object in slider
     // then load images in them
     this.itemsToRender = (new Array(sliderLength)).fill(null);
     this.translateLeft = 0;
-      this.leftOffset = 0;
-      if (props.isCircular) {
-          this.leftOffset++;
-      }
-    this.updateItems(selectedIndex);
+    this.updateItems(this.state.leftIndex);
   }
 
-    componentDidMount() {
-        if (this.props.autoplay) {
-            this.interval = setInterval(() => { this.onClick(false); }, 10000);
-        }
+  componentDidMount() {
+    if (this.props.autoplay) {
+      this.interval = setInterval(() => { this.onClick(false); }, 10000);
     }
-
-  state = {
-    leftIndex: this.props.selectedIndex,
-    isAnimation: false
-  };
+  }
 
   // This handles change in isVisible that comes from the parent. will not be called for others
   // because two separate arrays are maintained and the one showing is not coming from props.
   componentWillReceiveProps(nextProps) {
-    const { selectedIndex } = nextProps;
-    let { leftIndex } = this.state;
-
-    if (selectedIndex !== leftIndex) {
-      leftIndex = selectedIndex + 1;
-      this.setState({ leftIndex: selectedIndex });
+    let index = this.state.leftIndex;
+    if (this.props.index !== nextProps.index) {
+      index = nextProps.index + 1;
+      this.setState({
+        leftIndex: index
+      });
     }
-    this.updateItems(leftIndex, nextProps);
+    this.updateItems(index, nextProps);
   }
 
   componentDidUpdate() {
-    const { onChangeHandler } = this.props;
-    const { isAnimation, leftIndex } = this.state;
-
-    onChangeHandler(leftIndex);
-
-    if (isAnimation) {
+    if (this.state.isAnimation) {
       this.sliderTrack.addEventListener('transitionend',
-        this.onTransitionEnd,
-        false);
+      this.onTransitionEnd,
+      false);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.autoplay) {
+      clearInterval(this.interval);
     }
   }
 
   onClick(isLeft) {
+    this.transitionDelay = false;
     if (!this.state.isAnimation) {
-      let { circularItems, noOfSlidesShown } = this.props;
+      const { circularItems } = this.props;
+      let { noOfSlidesShown } = this.props;
       const sliderLength = circularItems.length;
       const sliderItemWidth = 100 / sliderLength;
       // multiplier -1 means element is sliding to left
@@ -69,7 +76,7 @@ class Slider extends Component {
       if (isLeft) {
         multiplier = 1;
       }
-      if (!this.props.isCircular) {
+      if (!this.props.isCircular && !this.props.sliderWrap) {
         noOfSlidesShown = this.getNumberShown(isLeft, this.state.leftIndex);
       }
       this.translateLeft = multiplier * noOfSlidesShown * sliderItemWidth;
@@ -162,7 +169,7 @@ class Slider extends Component {
     const indexOffset = noOfSlidesShown - this.getNumberShown(false, index - 1);
     for (let startIndex = index * noOfSlidesShown - indexOffset;
       startIndex < (index + 1) * noOfSlidesShown - indexOffset;
-         startIndex++
+      startIndex++
     ) {
       this.itemsToRender[startIndex] = circularItems[startIndex];
     }
@@ -170,53 +177,47 @@ class Slider extends Component {
 
   renderButton = ({ isLeft, className, classNames: s }) => {
     return (
-        <div
-          className={`${className} ${s.icon}`}
-          onClick={() => { this.onClick(isLeft); }}
-        >
-          <span />
-        </div>
+      <div
+        className={`${s.icon} ${className}`}
+        onClick={() => { this.onClick(isLeft); }}
+      >
+        <span />
+      </div>
     );
-  }
-
-    componentWillUnmount() {
-        if (this.props.autoplay) {
-            clearInterval(this.interval);
-        }
-    }
+  };
 
   render() {
-    const { circularItems, noOfSlidesShown, classNames: s, isCircular } = this.props;
-    const sliderLength = circularItems.length;
+      const { circularItems, noOfSlidesShown, classNames: s, isCircular } = this.props;
+      const sliderLength = circularItems.length;
       const leftVal = this.getLeft();
-    const sliderTrackWidth = `${(sliderLength / noOfSlidesShown) * 100}%`;
-    const { isAnimation, leftIndex } = this.state;
-    const sliderActualLength = (sliderLength / noOfSlidesShown) - 1;
-    let sliderTrackStyle = {
-      width: sliderTrackWidth,
-      left: `${leftIndex * -100}%`
-    };
-    if (isAnimation) {
-      sliderTrackStyle = {
-        ...sliderTrackStyle,
-        transform: `translate3d(${this.translateLeft}%,0px,0px)`,
-        transition: 'transform 0.7s ease-in-out'
+      const sliderTrackWidth = `${(sliderLength / noOfSlidesShown) * 100}%`;
+      const { isAnimation } = this.state;
+      let sliderTrackStyle = {
+        width: sliderTrackWidth,
+        left: `${leftVal}%`
       };
-    }
+      if (isAnimation) {
+        sliderTrackStyle = { ...sliderTrackStyle,
+          transform: `translate3d(${this.translateLeft}%,0px,0px)`,
+          transitionDelay: this.transitionDelay ? '1.5s' : '0s',
+          transition: 'transform 0.7s ease-out'
+         };
+      }
     return (
+      <div className={s.mySlider}>
         <div className={s.slider}>
           {
-            (isCircular || this.state.leftIndex < sliderActualLength) &&
+            (isCircular || this.state.leftIndex < (sliderLength / noOfSlidesShown) - 1) &&
             this.renderButton({
               isLeft: false,
-              className: classNames(s['slider-next'], s['slider-next-pos']),
+              className: s['slider-next'],
               classNames: s
             })}
           {
             (isCircular || this.state.leftIndex > 0) &&
             this.renderButton({
               isLeft: true,
-              className: classNames(s['slider-prev'], s['slider-prev-pos']),
+              className: s['slider-prev'],
               classNames: s
             })}
           <div className={s['slider-list']}>
@@ -227,16 +228,17 @@ class Slider extends Component {
             >
               {
                 this.itemsToRender.map((component, i) => (isCircular || component) && <Slide
-                    classNames={s} key={`image-${i}`}
-                    sliderLength={sliderLength}
-                  >
-                    {component}
+                  classNames={s} key={`image-${i}`}
+                  sliderLength={sliderLength}
+                >
+                  {component}
                   </Slide>
                 )
               }
             </div>
           </div>
         </div>
+      </div>
     );
   }
 }
@@ -246,15 +248,13 @@ Slider.propTypes = {
   isCircular: PropTypes.bool,
   autoplay: PropTypes.bool,
   classNames: PropTypes.object,
-  selectedIndex: PropTypes.number,
-  onChangeHandler: PropTypes.func
+  onChangeHandler: PropTypes.func,
+  sliderWrap: PropTypes.bool,
+  index: PropTypes.number
 };
 Slider.defaultProps = {
   circularItems: [],
   noOfSlidesShown: 3,
-  isCircular: false,
-  autoplay: false,
-  selectedIndex: 1,
   onChangeHandler: () => {}
 };
 export default Slider;

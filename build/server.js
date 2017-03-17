@@ -238,11 +238,11 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _assets = __webpack_require__(70);
+  var _assets = __webpack_require__(69);
   
   var _assets2 = _interopRequireDefault(_assets);
   
-  var _memoizee = __webpack_require__(52);
+  var _memoizee = __webpack_require__(70);
   
   var _memoizee2 = _interopRequireDefault(_memoizee);
   
@@ -527,48 +527,26 @@ module.exports =
   'use strict';
   
   Object.defineProperty(exports, "__esModule", {
-      value: true
+    value: true
   });
-  
-  var _toConsumableArray2 = __webpack_require__(12);
-  
-  var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-  
-  var _reject2 = __webpack_require__(20);
-  
-  var _reject3 = _interopRequireDefault(_reject2);
-  
   exports.imageList = imageList;
   
   var _constants = __webpack_require__(21);
   
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
   function imageList() {
-      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-      var action = arguments[1];
-      var type = action.type,
-          payload = action.payload;
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+    var type = action.type,
+        payload = action.payload;
   
-      switch (type) {
-          case _constants.ADD_IMAGE:
-              return [].concat((0, _toConsumableArray3.default)(state), [payload]);
-          case _constants.REMOVE_IMAGE:
-              return (0, _reject3.default)(state, function (el) {
-                  return el === payload;
-              });
-          default:
-              return state;
-      }
+    switch (type) {
+      default:
+        return state;
+    }
   }
 
 /***/ },
-/* 20 */
-/***/ function(module, exports) {
-
-  module.exports = require("lodash/reject");
-
-/***/ },
+/* 20 */,
 /* 21 */
 /***/ function(module, exports) {
 
@@ -757,7 +735,7 @@ module.exports =
   
   var _home2 = _interopRequireDefault(_home);
   
-  var _error = __webpack_require__(63);
+  var _error = __webpack_require__(61);
   
   var _error2 = _interopRequireDefault(_error);
   
@@ -1331,6 +1309,10 @@ module.exports =
     value: true
   });
   
+  var _regenerator = __webpack_require__(11);
+  
+  var _regenerator2 = _interopRequireDefault(_regenerator);
+  
   var _typeof2 = __webpack_require__(10);
   
   var _typeof3 = _interopRequireDefault(_typeof2);
@@ -1339,141 +1321,81 @@ module.exports =
   
   var _promise2 = _interopRequireDefault(_promise);
   
-  var _regenerator = __webpack_require__(11);
-  
-  var _regenerator2 = _interopRequireDefault(_regenerator);
-  
   var _asyncToGenerator2 = __webpack_require__(14);
   
   var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-  
-  var getHomePageData = function () {
-    var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(searchedWord) {
-      var data, json;
-      return _regenerator2.default.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return (0, _fetch2.default)(_urls.fbSearchUrl + '?type=place&q=' + searchedWord + '&access_token=1007663462664319|k4JAh0W2aPAFHjjN-2AvZCy7gmo');
-  
-            case 2:
-              data = _context.sent;
-              _context.next = 5;
-              return data.json();
-  
-            case 5:
-              json = _context.sent;
-              _context.next = 8;
-              return json;
-  
-            case 8:
-              return _context.abrupt('return', _context.sent);
-  
-            case 9:
-            case 'end':
-              return _context.stop();
-          }
-        }
-      }, _callee, this);
-    }));
-  
-    return function getHomePageData(_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
   
   var _react = __webpack_require__(31);
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _fetch = __webpack_require__(24);
+  var _itemData = __webpack_require__(51);
   
-  var _fetch2 = _interopRequireDefault(_fetch);
-  
-  var _urls = __webpack_require__(51);
-  
-  var _memoizee = __webpack_require__(52);
-  
-  var _memoizee2 = _interopRequireDefault(_memoizee);
+  var _itemData2 = _interopRequireDefault(_itemData);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  function getHomePageData() {
+    return _itemData2.default;
+  }
   
   exports.default = {
   
     path: '/:c*',
-    action: function action(_ref2, _ref3) {
+    action: function action(_ref, _ref2) {
       var _this = this;
   
-      var path = _ref2.path;
-      var c = _ref3.c;
-      return (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
+      var path = _ref.path;
+      var c = _ref2.c;
+      return (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
         var _ret;
   
-        return _regenerator2.default.wrap(function _callee3$(_context3) {
+        return _regenerator2.default.wrap(function _callee$(_context) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _context3.prev = 0;
-                return _context3.delegateYield(_regenerator2.default.mark(function _callee2() {
-                  var homePageData;
-                  return _regenerator2.default.wrap(function _callee2$(_context2) {
-                    while (1) {
-                      switch (_context2.prev = _context2.next) {
-                        case 0:
-                          _context2.next = 2;
-                          return getHomePageData(c);
+                _context.prev = 0;
   
-                        case 2:
-                          homePageData = _context2.sent;
-                          return _context2.abrupt('return', {
-                            v: new _promise2.default(function (resolve) {
-                              if (false) {
-                                require.ensure(['./Home'], function (require) {
-                                  var Home = require('./Home').default; // eslint-disable-line global-require
-                                  resolve(_react2.default.createElement(Home, { data: homePageData, path: path }));
-                                }, 'Home');
-                              } else {
-                                var Home = __webpack_require__(53).default; // eslint-disable-line
-                                resolve(_react2.default.createElement(Home, { data: homePageData, path: path }));
-                              }
-                            })
-                          });
-  
-                        case 4:
-                        case 'end':
-                          return _context2.stop();
+                _ret = function () {
+                  var homePageData = getHomePageData(c);
+                  return {
+                    v: new _promise2.default(function (resolve) {
+                      if (false) {
+                        require.ensure(['./Home'], function (require) {
+                          var Home = require('./Home').default; // eslint-disable-line global-require
+                          resolve(_react2.default.createElement(Home, { data: homePageData, path: path }));
+                        }, 'Home');
+                      } else {
+                        var Home = __webpack_require__(52).default; // eslint-disable-line
+                        resolve(_react2.default.createElement(Home, { data: homePageData, path: path }));
                       }
-                    }
-                  }, _callee2, _this);
-                })(), 't0', 2);
-  
-              case 2:
-                _ret = _context3.t0;
+                    })
+                  };
+                }();
   
                 if (!((typeof _ret === 'undefined' ? 'undefined' : (0, _typeof3.default)(_ret)) === "object")) {
-                  _context3.next = 5;
+                  _context.next = 4;
                   break;
                 }
   
-                return _context3.abrupt('return', _ret.v);
+                return _context.abrupt('return', _ret.v);
   
-              case 5:
-                _context3.next = 10;
+              case 4:
+                _context.next = 9;
                 break;
   
-              case 7:
-                _context3.prev = 7;
-                _context3.t1 = _context3['catch'](0);
+              case 6:
+                _context.prev = 6;
+                _context.t0 = _context['catch'](0);
   
-                console.log(_context3.t1);
+                console.log(_context.t0);
   
-              case 10:
+              case 9:
               case 'end':
-                return _context3.stop();
+                return _context.stop();
             }
           }
-        }, _callee3, _this, [[0, 7]]);
+        }, _callee, _this, [[0, 6]]);
       }))();
     }
   };
@@ -1488,21 +1410,577 @@ module.exports =
 /* 51 */
 /***/ function(module, exports) {
 
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  var fbSearchUrl = exports.fbSearchUrl = 'https://graph.facebook.com/search';
+  module.exports = {
+  	"CatalogEntryView": [
+  		{
+  			"CustomerReview": [
+  				{
+  					"Con": [
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "4"
+  								},
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "1"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "1"
+  								}
+  							],
+  							"datePosted": "Mon Mar 11 13:13:55 UTC 2013",
+  							"overallRating": "1",
+  							"review": "Less than 2 months after purchase it completely stopped working. First it wouldn't detect the pitcher when trying to blend a significant amount, a couple weeks later it wouldn't detect the single serve cup. ",
+  							"reviewKey": "b326b0d6-e6ae-4ec5-8080-720f0ad741af",
+  							"screenName": "New York",
+  							"title": "Very unhappy"
+  						}
+  					],
+  					"ConsolidatedRatableAttributes": [
+  						{
+  							"description": "Quality",
+  							"name": "QUALITY",
+  							"value": "4"
+  						},
+  						{
+  							"description": "Easy to Use",
+  							"name": "EASY_TO_USE",
+  							"value": "4.5"
+  						},
+  						{
+  							"description": "Value",
+  							"name": "VALUE",
+  							"value": "3.5"
+  						}
+  					],
+  					"Pro": [
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "5"
+  								},
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "5"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "5"
+  								}
+  							],
+  							"datePosted": "Thu Apr 18 19:42:19 UTC 2013",
+  							"overallRating": "5",
+  							"review": "This blender works amazingly, and blends within seconds.  The single serve cups also work really well for smoothies or protein shakes!",
+  							"reviewKey": "d602bcdf-53be-4769-94da-3b3fd2517d21",
+  							"screenName": "Eric",
+  							"title": "Fantastic Blender"
+  						}
+  					],
+  					"Reviews": [
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "4"
+  								},
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "1"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "1"
+  								}
+  							],
+  							"city": "NYC",
+  							"customerId": "110657105",
+  							"datePosted": "Mon Mar 11 13:13:55 UTC 2013",
+  							"helpfulVotes": "39",
+  							"overallRating": "1",
+  							"review": "Less than 2 months after purchase it completely stopped working. First it wouldn't detect the pitcher when trying to blend a significant amount, a couple weeks later it wouldn't detect the single serve cup. ",
+  							"reviewKey": "b326b0d6-e6ae-4ec5-8080-720f0ad741af",
+  							"screenName": "New York",
+  							"state": "NY",
+  							"title": "Very unhappy",
+  							"totalComments": "0",
+  							"totalVotes": "52"
+  						},
+  						{
+  							"Comments": [
+  								{
+  									"city": "",
+  									"commentKey": "CommentKey:ffcefb66-381a-4985-b869-9fcfdd26e7cc",
+  									"commentText": "Separating the men from the boys,  separating the amateurs from the professionals when it comes to blenders, when you revealed to us that, -It doesn&#x27;t pulverize seeds-.I really need a good blender, but there is No way that I would buy this blender now. Thank you so much, Jon",
+  									"postedDate": "Thu Oct 10 04:17:50 UTC 2013",
+  									"screenName": "JON",
+  									"userKey": "118863321",
+  									"userTier": "Trusted"
+  								}
+  							],
+  							"RatableAttributes": [
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "2"
+  								},
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "3"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "2"
+  								}
+  							],
+  							"city": "Idaho Falls",
+  							"customerId": "116317693",
+  							"datePosted": "Sun Sep 01 03:18:11 UTC 2013",
+  							"helpfulVotes": "16",
+  							"overallRating": "2",
+  							"review": "This blender is not superior to other smoothie blenders, It doesn't pulverize seeds and leaves green smoothies chunky with a lot of pulp. The single serve concept is amazing, however, my single serve cup began to break right from the start. The prongs became chipped because of the difficulty of screwing it in and out of the base. It won't blend for more than a minute without smelling like burned rubber. While the single serve seemed to blend more smoothly, it didn't hold much, especially when adding ice. I was very disappointed and so I returned it,",
+  							"reviewKey": "399853f3-4451-40a8-bcd6-bda2d814d9f4",
+  							"screenName": "London",
+  							"state": "ID",
+  							"title": "Very Disappointed",
+  							"totalComments": "1",
+  							"totalVotes": "21"
+  						},
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "5"
+  								},
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "5"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "5"
+  								}
+  							],
+  							"city": "Oakland",
+  							"customerId": "100025104",
+  							"datePosted": "Thu Apr 18 19:42:19 UTC 2013",
+  							"helpfulVotes": "10",
+  							"overallRating": "5",
+  							"review": "This blender works amazingly, and blends within seconds.  The single serve cups also work really well for smoothies or protein shakes!",
+  							"reviewKey": "d602bcdf-53be-4769-94da-3b3fd2517d21",
+  							"screenName": "Eric",
+  							"state": "CA",
+  							"title": "Fantastic Blender",
+  							"totalComments": "0",
+  							"totalVotes": "10"
+  						},
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "5"
+  								},
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "5"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "5"
+  								}
+  							],
+  							"city": "Cambridge",
+  							"customerId": "172227",
+  							"datePosted": "Sat Jan 18 01:20:36 UTC 2014",
+  							"helpfulVotes": "9",
+  							"overallRating": "5",
+  							"review": "I am blown away by this blender. It obliterates ice and frozen fruit - and blends fresh fruits to smooth perfection. It even makes quick work of fresh ginger and tough greens. I did a ton of research before settling on the Ninja. This was a splurge for me - and I spent the extra money to get the single serve cups, thinking I'd take my smoothie to work every morning. But my husband is totally hooked on smoothies now too, so the big pitcher is getting regular use. Tried it out for margaritas tonight... half a lime, half a lemon, half an orange with tequila, honey and ice... unbelievably good. Haven't tried it for soup or sauce yet, but can hardly wait.\n\nI'm impressed by features such as the suction cup feet, the snap-seal lid, and the sensor that prevents the machine from being turned on without the top in place. It cleans up nicely too. \n\nBottom line: I can't stop raving about this thing and have recommended it to all my friends and family.",
+  							"reviewKey": "d8e9ac59-6c3a-47be-8b87-f912715ccd18",
+  							"screenName": "E",
+  							"state": "MA",
+  							"title": "Couldn't be happier",
+  							"totalComments": "0",
+  							"totalVotes": "9"
+  						},
+  						{
+  							"Comments": [
+  								{
+  									"city": "",
+  									"commentKey": "CommentKey:a5b92fc8-ec2a-4772-b4ea-3cf4d473015b",
+  									"commentText": "THANK YOU, THANK YOU&#x21;&#x21;&#x21;&#x21;&#x21; YOU JUST GAVE ME THE BEST REASON TO -- NOT BUY -- THIS THING &#x21; THANK YOU, JON",
+  									"postedDate": "Thu Oct 10 03:44:47 UTC 2013",
+  									"screenName": "JON",
+  									"userKey": "118863321",
+  									"userTier": "Trusted"
+  								}
+  							],
+  							"RatableAttributes": [
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "1"
+  								},
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "1"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "1"
+  								}
+  							],
+  							"city": "new york",
+  							"customerId": "116426870",
+  							"datePosted": "Thu Jun 06 04:49:37 UTC 2013",
+  							"helpfulVotes": "38",
+  							"overallRating": "1",
+  							"review": " Upon using this blender  it turns out that the food gets into a deep hole at the bottom of the blade assembly , which fits on top of the rotating spindle, which cannot be cleaned.  No amount of rinsing or dish washer washing can get to it. A special thin and long brush would be required. Such food deposits can quickly become a place for bacteria growth and accumulate soap from dishwasher etc. A radical design change and going back to the drawing board is required, which Ninja would be unwilling to do.  Very poor and harmful product",
+  							"reviewKey": "49add669-1256-4894-9fce-9e0464342887",
+  							"screenName": "gourmet",
+  							"state": "NY",
+  							"title": "bacteria hazard",
+  							"totalComments": "1",
+  							"totalVotes": "69"
+  						},
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "5"
+  								},
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "5"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "5"
+  								}
+  							],
+  							"city": "Wilmington ",
+  							"customerId": "115016455",
+  							"datePosted": "Sun Mar 16 13:54:36 UTC 2014",
+  							"helpfulVotes": "5",
+  							"overallRating": "5",
+  							"review": "Right out of the box I love this thing. You have to read the instructions: it indicates you must pulse several times THEN blend in order to get the smooth consistency. I'm going now to google soups to make. I'll add on to my review once I've tried more stuff. I know some folks had problems, I can say with total confidence that Ninja backs up what they make. I have a vacuum, steamer and iron and I broke the vacuum and they still fixed it for free. Easy peasy. Be sure to register your purchase. Peace. ",
+  							"reviewKey": "bf2283a9-37a1-46e2-b9b4-3edb757d5375",
+  							"screenName": "Sandra",
+  							"state": "DE",
+  							"title": "Great Blender",
+  							"totalComments": "0",
+  							"totalVotes": "5"
+  						},
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "5"
+  								},
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "5"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "5"
+  								}
+  							],
+  							"city": "Tucson",
+  							"customerId": "119946555",
+  							"datePosted": "Thu Jan 30 18:50:22 UTC 2014",
+  							"helpfulVotes": "6",
+  							"overallRating": "5",
+  							"review": "My daughter received this Ninja blender and she absolutely loves it. My grandson has Autisim and has very sensitive taste buds. With the Ninja my daughter is able to puree his homemade soups, &amp; refried beans. Life is a little easier for my daughter &amp; him. She is in heaven. \n",
+  							"reviewKey": "7c7ef8c0-e227-45a5-86cd-c29adeb0bd2a",
+  							"screenName": "Flora",
+  							"state": "AZ",
+  							"title": "Ninja Blender",
+  							"totalComments": "0",
+  							"totalVotes": "7"
+  						},
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "4"
+  								},
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "5"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "5"
+  								}
+  							],
+  							"city": "Minneapolis",
+  							"customerId": "109690154",
+  							"datePosted": "Sun Jan 12 17:41:43 UTC 2014",
+  							"helpfulVotes": "4",
+  							"overallRating": "5",
+  							"review": "I have to assume that the negative reviewers received an unfortunate &quot;lemon&quot; blender... that, or they didn't read the instruction manual, because I love my Ninja and definitely recommend it.\n\nI've had this blender for over a year and it still works as wonderfully as the day I bought it. I use it primarily for making smoothies, everything from green monsters to peanut butter protein shakes to frozen fruit &amp; yogurt smoothies with chia seeds on top.\n\nIt's like having Jamba Juice in my kitchen, but without the long line of snap-chatting teenagers.\n\nI frequently use the to-go cups to blend and take with me in the car. If you are in the camp lamenting that it doesn't hold enough, you probably also expect that once blended, it will be as full as you originally (over)stuffed it.\n\nRespect the max fill line, people, or use the full-size blender if you are going for NYC Big Gulp size.\n\nI will say, that if you are looking to seriously juice, this is not the blender for you. \n\nIt might take a little experimentation to get the right ratio of liquid to solid/frozen for a perfectly smooth blend, but once you figure out what works for you, it's easy!",
+  							"reviewKey": "9e0322d2-256e-46a5-80dc-b4468e58359b",
+  							"screenName": "Kari",
+  							"state": "MN",
+  							"title": "Love this blender!",
+  							"totalComments": "0",
+  							"totalVotes": "4"
+  						},
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "5"
+  								},
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "5"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "5"
+  								}
+  							],
+  							"city": "Houston",
+  							"customerId": "116412794",
+  							"datePosted": "Wed Jun 05 14:26:21 UTC 2013",
+  							"helpfulVotes": "5",
+  							"overallRating": "5",
+  							"review": "[...]\nAll the parts are well made and good quality. The only thing that seems a little flimsy would be the drinking tops for the single serve cups, but those don't even matter because all you are doing is drinking from the tops.  All the rest of the machine is top notch.\n\nThis blender is powerful, quiet and very easy to clean.   \n\n[...]\nYou will not regret buying this machine.  ",
+  							"reviewKey": "4cc67e87-6754-4cab-8eb7-fb3bd738c16c",
+  							"screenName": "Te-Ann",
+  							"state": "TX",
+  							"title": "LOVE LOVE LOVE!!!!",
+  							"totalComments": "0",
+  							"totalVotes": "6"
+  						},
+  						{
+  							"RatableAttributes": [
+  								{
+  									"description": "quality",
+  									"name": "QUALITY",
+  									"value": "5"
+  								},
+  								{
+  									"description": "easy_to_use",
+  									"name": "EASY_TO_USE",
+  									"value": "5"
+  								},
+  								{
+  									"description": "value",
+  									"name": "VALUE",
+  									"value": "4"
+  								}
+  							],
+  							"city": "CENTREVILLE",
+  							"customerId": "102170259",
+  							"datePosted": "Thu Jan 30 05:33:15 UTC 2014",
+  							"helpfulVotes": "3",
+  							"overallRating": "5",
+  							"review": "I'm not sure why there are so many negative reviews about this blender on Target's website, but it's a great blender.  The first blender I've own that actually crushes the ice completely! Perfect for shakes!",
+  							"reviewKey": "3e810dba-638f-4146-aee8-190a741d86d5",
+  							"screenName": "SL",
+  							"state": "VA",
+  							"title": "Fantastic blender!!",
+  							"totalComments": "0",
+  							"totalVotes": "3"
+  						}
+  					],
+  					"consolidatedOverallRating": "4",
+  					"totalPages": "2",
+  					"totalReviews": "14"
+  				}
+  			],
+  			"DPCI": "072-04-1840",
+  			"Images": [
+  				{
+  					"AlternateImages": [
+  						{
+  							"image": "http://target.scene7.com/is/image/Target/14263758_Alt01"
+  						},
+  						{
+  							"image": "http://target.scene7.com/is/image/Target/14263758_Alt02"
+  						},
+  						{
+  							"image": "http://target.scene7.com/is/image/Target/14263758_Alt03"
+  						},
+  						{
+  							"image": "http://target.scene7.com/is/image/Target/14263758_Alt04"
+  						},
+  						{
+  							"image": "http://target.scene7.com/is/image/Target/14263758_Alt05"
+  						},
+  						{
+  							"image": "http://target.scene7.com/is/image/Target/14263758_Alt06"
+  						},
+  						{
+  							"image": "http://target.scene7.com/is/image/Target/14263758_Alt07"
+  						}
+  					],
+  					"PrimaryImage": [
+  						{
+  							"image": "http://target.scene7.com/is/image/Target/14263758"
+  						}
+  					],
+  					"imageCount": "8",
+  					"source": "internal"
+  				}
+  			],
+  			"ItemDescription": [
+  				{
+  					"features": [
+  						"<strong>Wattage Output:</strong> 1100 Watts",
+  						"<strong>Number of Speeds:</strong> 3 ",
+  						"<strong>Capacity (volume):</strong> 72.0 Oz.",
+  						"<strong>Appliance Capabilities:</strong> Blends",
+  						"<strong>Includes:</strong> Travel Lid",
+  						"<strong>Material:</strong> Plastic",
+  						"<strong>Finish:</strong> Painted",
+  						"<strong>Metal Finish:</strong> Chrome",
+  						"<strong>Safety and Security Features:</strong> Non-Slip Base",
+  						"<strong>Care and Cleaning:</strong> Easy-To-Clean, Dishwasher Safe Parts"
+  					]
+  				}
+  			],
+  			"Offers": [
+  				{
+  					"OfferPrice": [
+  						{
+  							"currencyCode": "USD",
+  							"formattedPriceValue": "$139.99",
+  							"priceQualifier": "Online Price",
+  							"priceValue": "13999"
+  						}
+  					]
+  				}
+  			],
+  			"POBoxProhibited": "We regret that this item cannot be shipped to PO Boxes.",
+  			"PackageDimension": [
+  				{
+  					"name": "length",
+  					"unit": "IN",
+  					"value": "17.4"
+  				},
+  				{
+  					"name": "width",
+  					"unit": "IN",
+  					"value": "12.4"
+  				},
+  				{
+  					"name": "height",
+  					"unit": "IN",
+  					"value": "9.9"
+  				},
+  				{
+  					"name": "weight",
+  					"unit": "LB",
+  					"value": "10.85"
+  				}
+  			],
+  			"Promotions": [
+  				{
+  					"Description": [
+  						{
+  							"legalDisclaimer": "Offer available online only. Offer applies to purchases of $50 or more of eligible items across all categories. Look for the &quot;SPEND $50: SHIPS FREE&quot; logo on eligible items. Some exclusions apply. Items that are not eligible are subject to shipping charges. $50 purchase is based on eligible merchandise subtotal. Items that are not eligible, GiftCards, e-GiftCards, gift wrap, tax and shipping and handling charges will not be included in determining merchandise subtotal. Offer valid for orders shipping within the 48 contiguous states, as well as APO/FPO and for Standard and To the Door shipping methods only. Not valid on previous orders.",
+  							"shortDescription": "SPEND $50, GET FREE SHIPPING"
+  						}
+  					],
+  					"endDate": "2014-05-25 06:59:00.001",
+  					"promotionIdentifier": "10736506",
+  					"promotionType": "Buy catalog entries from category X, get shipping at a fixed price",
+  					"startDate": "2014-05-18 07:00:00.001"
+  				},
+  				{
+  					"Description": [
+  						{
+  							"legalDisclaimer": "Receive a $25 gift card when you buy a Ninja Professional Blender with single serve blending cups or a Ninja MEGA Kitchen System. Not valid on previous orders. On your order summary, the item subtotal will reflect the price of the qualifying item plus the amount of the free gift card, followed by a discount given for the amount of the free gift card. &nbsp;Your price on the order summary will be the price of the qualifying item (the total charges for the qualifying item and gift card). &nbsp;Your account will actually be charged the amount of the qualifying item reduced by the amount of the gift card, and a separate charge for the amount of the gift card. The gift card will be sent to the same address as your order and will ship separately. If you want to return the item you purchased to a Target Store, you may either keep the gift card and just return the qualifying item (you will be refunded the amount of the qualifying item reduced by the amount of the gift card), or you can return the qualifying item and the gift card &nbsp;for a full refund using the online receipt. If you return the item you purchased by mail, keep the gift card; you will be refunded the amount of the qualifying item reduced by the amount of the gift card. Offer expires 05/24/14 at 11:59pm PST.",
+  							"shortDescription": "$25 gift card with purchase of a select Ninja Blender"
+  						}
+  					],
+  					"endDate": "2014-05-25 06:59:00.001",
+  					"promotionIdentifier": "10730501",
+  					"promotionType": "Multiple Items Free Gift",
+  					"startDate": "2014-05-11 07:00:00.001"
+  				}
+  			],
+  			"ReturnPolicy": [
+  				{
+  					"ReturnPolicyDetails": [
+  						{
+  							"guestMessage": "View our return policy",
+  							"policyDays": "100",
+  							"user": "Regular Guest"
+  						},
+  						{
+  							"guestMessage": "View our return policy",
+  							"policyDays": "120",
+  							"user": "Best Guest"
+  						}
+  					],
+  					"legalCopy": "refund/exchange policy<br/><br/><p style=\"font-size:13px;\">Most unopened items in new condition returned within 90 days will receive a refund or exchange. Some items have a modified return policy that is less than 90 days.&nbsp;Those items will either show a \"return by\" date or \"return within\" day range under the item on your receipt or packing slip and in the \"Item details, shipping\" tab if purchased on Target.com. Items that are opened or damaged or do not have a packing slip or receipt may be denied a refund or exchange. All bundled items must be returned with all components for a full refund. Bundle components may not all have the same return policy; please check your packing slip for details.&nbsp; Some items, such as gift cards, digital items&nbsp;are never returnable.&nbsp;<br /><br />See the <a href=\"http://www.target.com/HelpContent?help=/sites/html/TargetOnline/help/returns_and_refunds/returns_and_refunds.html\">Target return policy</a> for complete information.</p><br/>"
+  				}
+  			],
+  			"UPC": "622356532099",
+  			"applyCouponLink": "false",
+  			"buyable": "true",
+  			"callOutMsg": "FREE $25 GIFT CARD",
+  			"catEntryId": "205273068",
+  			"classId": "04",
+  			"department": "072",
+  			"eligibleFor": "ADD_TO_CART",
+  			"inventoryCode": "0",
+  			"inventoryStatus": "Online",
+  			"itemId": "1840",
+  			"itemType": "ItemBean",
+  			"manufacturer": "Euro Pro",
+  			"manufacturerPartNumber": "BL660",
+  			"packageQuantity": "null ",
+  			"partNumber": "14263758",
+  			"purchasingChannel": "Sold Online + in Stores",
+  			"purchasingChannelCode": "0",
+  			"shortDescription": "For the first time EVER - you get the same professional performance power in the Single Serve as well as the XL 72 oz pitcher! The Ninja™ Professional Blender with Single Serve Blending Cups allow you to crush ice into snow, blend whole fruits and vegetables into nutritious beverages, and create resort style blended drinks! Full size blender performance now in individual cups.",
+  			"title": "Ninja™ Professional Blender with Single Serve Blending Cups",
+  			"webclass": "Small Appliances"
+  		}
+  	]
+  };
 
 /***/ },
 /* 52 */
-/***/ function(module, exports) {
-
-  module.exports = require("memoizee");
-
-/***/ },
-/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -1510,6 +1988,10 @@ module.exports =
   Object.defineProperty(exports, "__esModule", {
       value: true
   });
+  
+  var _slicedToArray2 = __webpack_require__(47);
+  
+  var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
   
   var _getPrototypeOf = __webpack_require__(33);
   
@@ -1531,9 +2013,21 @@ module.exports =
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
-  var _map2 = __webpack_require__(54);
+  var _includes2 = __webpack_require__(77);
+  
+  var _includes3 = _interopRequireDefault(_includes2);
+  
+  var _map2 = __webpack_require__(53);
   
   var _map3 = _interopRequireDefault(_map2);
+  
+  var _at6 = __webpack_require__(75);
+  
+  var _at7 = _interopRequireDefault(_at6);
+  
+  var _get2 = __webpack_require__(76);
+  
+  var _get3 = _interopRequireDefault(_get2);
   
   var _react = __webpack_require__(31);
   
@@ -1543,11 +2037,11 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Home = __webpack_require__(55);
+  var _Home = __webpack_require__(54);
   
   var _Home2 = _interopRequireDefault(_Home);
   
-  var _ComponentsSlider = __webpack_require__(57);
+  var _ComponentsSlider = __webpack_require__(56);
   
   var _ComponentsSlider2 = _interopRequireDefault(_ComponentsSlider);
   
@@ -1557,54 +2051,188 @@ module.exports =
       (0, _inherits3.default)(Home, _Component);
   
       function Home() {
+          var _ref;
+  
+          var _temp, _this, _ret;
+  
           (0, _classCallCheck3.default)(this, Home);
-          return (0, _possibleConstructorReturn3.default)(this, (Home.__proto__ || (0, _getPrototypeOf2.default)(Home)).apply(this, arguments));
-      }
+  
+          for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+              args[_key] = arguments[_key];
+          }
+  
+          return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Home.__proto__ || (0, _getPrototypeOf2.default)(Home)).call.apply(_ref, [this].concat(args))), _this), _this.state = { selectedIndex: 0 }, _this.onChangeHandler = function (selectedIndex) {
+              _this.setState({ selectedIndex: selectedIndex });
+          }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+      } // eslint-disable-line react/prefer-stateless-function
+  
   
       (0, _createClass3.default)(Home, [{
           key: 'render',
-          // eslint-disable-line react/prefer-stateless-function
-  
-  
           value: function render() {
-              var imageList = ['https://www.familydollar.com/content/dam/familydollar/products-services/products-module-image.jpg', 'http://w3.siemens.com/mcms/automation/en/product-lifecycle-management-plm/plm-products/PublishingImages/plm-products.jpg', 'http://d152j5tfobgaot.cloudfront.net/wp-content/uploads/2016/08/125-fall-in-love.png', 'http://img.businessdictionary.com/share-social/terms/product.png'];
+              var _this2 = this;
+  
+              var selectedIndex = this.state.selectedIndex;
+              var data = this.props.data;
+              var imageList = (0, _get3.default)(data, 'CatalogEntryView[0].Images[0].AlternateImages', []).map(function (i) {
+                  return (0, _get3.default)(i, 'image');
+              });
+              var CatalogEntryView = (0, _get3.default)(data, 'CatalogEntryView[0]');
+  
+              var _at2 = (0, _at7.default)(CatalogEntryView, ['ItemDescription[0].features', 'Offers[0].OfferPrice[0]', 'PackageDimension', 'Promotions', 'purchasingChannelCode', 'inventoryStatus', 'title', 'ReturnPolicy[0].legalCopy']),
+                  _at3 = (0, _slicedToArray3.default)(_at2, 8),
+                  _at3$ = _at3[0],
+                  ItemDescription = _at3$ === undefined ? [] : _at3$,
+                  OfferPrice = _at3[1],
+                  PackageDimension = _at3[2],
+                  Promotions = _at3[3],
+                  purchasingChannelCode = _at3[4],
+                  inventoryStatus = _at3[5],
+                  title = _at3[6],
+                  legalCopy = _at3[7];
+  
+              var _at4 = (0, _at7.default)(OfferPrice, ['currencyCode', 'formattedPriceValue', 'priceQualifier', 'priceValue']),
+                  _at5 = (0, _slicedToArray3.default)(_at4, 4),
+                  currencyCode = _at5[0],
+                  formattedPriceValue = _at5[1],
+                  priceQualifier = _at5[2],
+                  priceValue = _at5[3];
+  
               return _react2.default.createElement(
-                  _ComponentsSlider2.default,
-                  {
-                      isCircular: false,
-                      autoplay: false
-                  },
-                  (0, _map3.default)(imageList, function (imgSrc, i) {
-                      return _react2.default.createElement(
+                  'div',
+                  { className: _Home2.default.container },
+                  _react2.default.createElement(
+                      'div',
+                      null,
+                      _react2.default.createElement(
+                          'h1',
+                          null,
+                          title
+                      ),
+                      _react2.default.createElement(
+                          _ComponentsSlider2.default,
+                          {
+                              isCircular: true,
+                              autoplay: false,
+                              onChangeHandler: this.onChangeHandler,
+                              index: selectedIndex
+                          },
+                          (0, _map3.default)(imageList, function (imgSrc, i) {
+                              return _react2.default.createElement(
+                                  'div',
+                                  { key: i, className: _Home2.default.preview },
+                                  _react2.default.createElement('img', {
+                                      role: 'presentation',
+                                      src: imgSrc })
+                              );
+                          })
+                      ),
+                      _react2.default.createElement(
                           'div',
-                          { key: i },
-                          _react2.default.createElement('img', {
-                              role: 'presentation',
-                              src: imgSrc })
-                      );
-                  })
+                          { className: _Home2.default.row },
+                          _react2.default.createElement(
+                              _ComponentsSlider2.default,
+                              {
+                                  isCircular: false,
+                                  autoplay: false,
+                                  noOfSlidesShown: 3
+                              },
+                              (0, _map3.default)(imageList, function (imgSrc, i) {
+                                  return _react2.default.createElement(
+                                      'div',
+                                      { key: i, className: _Home2.default.cell, onClick: function onClick() {
+                                              return _this2.onChangeHandler(i);
+                                          } },
+                                      _react2.default.createElement('img', {
+                                          role: 'presentation',
+                                          src: imgSrc })
+                                  );
+                              })
+                          )
+                      )
+                  ),
+                  _react2.default.createElement(
+                      'div',
+                      { className: _Home2.default.right },
+                      _react2.default.createElement(
+                          'div',
+                          null,
+                          formattedPriceValue,
+                          _react2.default.createElement(
+                              'sub',
+                              null,
+                              priceQualifier
+                          )
+                      ),
+                      _react2.default.createElement(
+                          'div',
+                          null,
+                          (0, _map3.default)(Promotions, function (p, i) {
+                              return _react2.default.createElement(
+                                  'div',
+                                  { key: i },
+                                  (0, _get3.default)(p, 'Description[0].shortDescription')
+                              );
+                          })
+                      ),
+                      _react2.default.createElement('input', { type: 'number', min: 1 }),
+                      _react2.default.createElement(
+                          'div',
+                          { className: _Home2.default.buttonGroup },
+                          (0, _includes3.default)(['0', '1'], purchasingChannelCode) && _react2.default.createElement(
+                              'button',
+                              null,
+                              'ADD TO CART'
+                          ),
+                          (0, _includes3.default)(['0', '2'], purchasingChannelCode) && _react2.default.createElement(
+                              'button',
+                              null,
+                              'PICK UP IN STORE'
+                          )
+                      ),
+                      _react2.default.createElement(
+                          'div',
+                          null,
+                          _react2.default.createElement(
+                              'div',
+                              { className: _Home2.default.verticalSeparator },
+                              'Returns'
+                          ),
+                          _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: '<p>' + legalCopy + '</p>' } })
+                      ),
+                      _react2.default.createElement(
+                          'h2',
+                          null,
+                          'Product highlights'
+                      ),
+                      _react2.default.createElement(
+                          'ul',
+                          null,
+                          (0, _map3.default)(ItemDescription, function (des, i) {
+                              return _react2.default.createElement('li', { key: i, dangerouslySetInnerHTML: { __html: des } });
+                          })
+                      )
+                  )
               );
           }
       }]);
       return Home;
   }(_react.Component);
   
-  Home.contextTypes = {};
-  
   exports.default = (0, _withStyles2.default)(_Home2.default)(Home);
 
 /***/ },
-/* 54 */
+/* 53 */
 /***/ function(module, exports) {
 
   module.exports = require("lodash/map");
 
 /***/ },
-/* 55 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(56);
+      var content = __webpack_require__(55);
       var insertCss = __webpack_require__(45);
   
       if (typeof content === 'string') {
@@ -1634,7 +2262,7 @@ module.exports =
     
 
 /***/ },
-/* 56 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(44)();
@@ -1642,15 +2270,21 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".Home_input_3MJ {\n  height: 2em;\n  font-size: 2em;\n  border: 1px solid green; }\n", "", {"version":3,"sources":["/./routes/home/Home.scss"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,eAAe;EACf,wBAAwB,EAAE","file":"Home.scss","sourcesContent":[".input {\n  height: 2em;\n  font-size: 2em;\n  border: 1px solid green; }\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/*\nWebsite to find color names corresponding to hash code\nhttp://chir.ag/projects/name-that-color/\nhttp://www.color-hex.com/color/da70d6\n */\n.Home_row_tWR, .Home_container_1N8 {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: row;\n      -ms-flex-direction: row;\n          flex-direction: row; }\n\n.Home_column_2Dc, .Home_right_2lI {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n      -ms-flex-direction: column;\n          flex-direction: column; }\n\n.Home_container_1N8 {\n  height: 700px;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-flex-wrap: wrap;\n      -ms-flex-wrap: wrap;\n          flex-wrap: wrap;\n  margin: 2rem; }\n  .Home_container_1N8 > div {\n    width: 400px; }\n  .Home_container_1N8 button {\n    background: #01b9f5; }\n\n.Home_preview_pvO {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n      -ms-flex-pack: center;\n          justify-content: center; }\n  .Home_preview_pvO img {\n    width: 300px;\n    height: 300px; }\n\n.Home_cell_bus {\n  width: 100px;\n  height: 100px; }\n  .Home_cell_bus img {\n    width: 100%; }\n\n.Home_right_2lI {\n  line-height: 1.4em; }\n\n.Home_buttonGroup_A3H {\n  /*@extend .row;*/ }\n", "", {"version":3,"sources":["/./routes/home/Home.scss"],"names":[],"mappings":"AAAA;;;;GAIG;AACH;EACE,qBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd,cAAc;EACd,+BAAoB;EAApB,8BAAoB;EAApB,4BAAoB;MAApB,wBAAoB;UAApB,oBAAoB,EAAE;;AAExB;EACE,qBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd,cAAc;EACd,6BAAuB;EAAvB,8BAAuB;EAAvB,+BAAuB;MAAvB,2BAAuB;UAAvB,uBAAuB,EAAE;;AAE3B;EACE,cAAc;EACd,0BAA+B;EAA/B,uCAA+B;MAA/B,uBAA+B;UAA/B,+BAA+B;EAC/B,wBAAgB;MAAhB,oBAAgB;UAAhB,gBAAgB;EAChB,aAAa,EAAE;EACf;IACE,aAAa,EAAE;EACjB;IACE,oBAAoB,EAAE;;AAE1B;EACE,qBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd,cAAc;EACd,yBAAwB;EAAxB,gCAAwB;MAAxB,sBAAwB;UAAxB,wBAAwB,EAAE;EAC1B;IACE,aAAa;IACb,cAAc,EAAE;;AAEpB;EACE,aAAa;EACb,cAAc,EAAE;EAChB;IACE,YAAY,EAAE;;AAElB;EACE,mBAAmB,EAAE;;AAEvB;EACE,iBAAiB,EAAE","file":"Home.scss","sourcesContent":["/*\nWebsite to find color names corresponding to hash code\nhttp://chir.ag/projects/name-that-color/\nhttp://www.color-hex.com/color/da70d6\n */\n.row, .container {\n  display: flex;\n  flex-direction: row; }\n\n.column, .right {\n  display: flex;\n  flex-direction: column; }\n\n.container {\n  height: 700px;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  margin: 2rem; }\n  .container > div {\n    width: 400px; }\n  .container button {\n    background: #01b9f5; }\n\n.preview {\n  display: flex;\n  justify-content: center; }\n  .preview img {\n    width: 300px;\n    height: 300px; }\n\n.cell {\n  width: 100px;\n  height: 100px; }\n  .cell img {\n    width: 100%; }\n\n.right {\n  line-height: 1.4em; }\n\n.buttonGroup {\n  /*@extend .row;*/ }\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
-  	"input": "Home_input_3MJ"
+  	"row": "Home_row_tWR",
+  	"container": "Home_container_1N8",
+  	"column": "Home_column_2Dc",
+  	"right": "Home_right_2lI",
+  	"preview": "Home_preview_pvO",
+  	"cell": "Home_cell_bus",
+  	"buttonGroup": "Home_buttonGroup_A3H"
   };
 
 /***/ },
-/* 57 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -1658,10 +2292,6 @@ module.exports =
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  
-  var _extends2 = __webpack_require__(23);
-  
-  var _extends3 = _interopRequireDefault(_extends2);
   
   var _toConsumableArray2 = __webpack_require__(12);
   
@@ -1675,98 +2305,100 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _ComponentsSlider = __webpack_require__(58);
+  var _ComponentsSlider = __webpack_require__(57);
   
   var _ComponentsSlider2 = _interopRequireDefault(_ComponentsSlider);
   
-  var _Slider = __webpack_require__(60);
+  var _Slider = __webpack_require__(59);
   
   var _Slider2 = _interopRequireDefault(_Slider);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  var defaultClassNames = {
-    slider: _ComponentsSlider2.default.slider,
-    icon: _ComponentsSlider2.default.icon,
-    sliderContainer: _ComponentsSlider2.default.sliderContainer,
-    'slider-next': _ComponentsSlider2.default['slider-next'],
-    'slider-prev': _ComponentsSlider2.default['slider-prev'],
-    'slider-next-pos': _ComponentsSlider2.default['slider-next-pos'],
-    'slider-prev-pos': _ComponentsSlider2.default['slider-prev-pos'],
-    'transition--0': _ComponentsSlider2.default['transition--0'],
-    slide: _ComponentsSlider2.default.slide,
-    'slider-list': _ComponentsSlider2.default['slider-list'],
-    'slider-track': _ComponentsSlider2.default['slider-track'],
-    'image-container': _ComponentsSlider2.default['image-container']
-  };
-  
   /**
    *
-   * @param noOfSlidesShown: only these will be download and shown on first fold else
-   * all will be lazily loaded
+   * @param noOfSlidesShown
    * @param autoplay
-   * @param items: These are array of components
-   * @param classNames:  ClassNames are configurable
-   * @param selectedIndex: used to send force selection from top on each component
-   * update. Will not cause animation in the process
-   * @param isCircular: to make slider circulate without jerk
+   * @param children
+   * @param classNames
+   * @param onChangeHandler: fires when we click on slider left or right
    * @returns {XML}
    * @constructor
    */
-  
   var ComponentsSlider = function ComponentsSlider(_ref) {
     var noOfSlidesShown = _ref.noOfSlidesShown,
         autoplay = _ref.autoplay,
-        items = _ref.children,
-        classNames = _ref.classNames,
+        sliderWrap = _ref.sliderWrap,
         isCircular = _ref.isCircular,
-        onChangeHandler = _ref.onChangeHandler,
-        selectedIndex = _ref.selectedIndex;
+        styles = _ref.styles,
+        index = _ref.index,
+        items = _ref.children,
+        onChangeHandler = _ref.onChangeHandler;
   
+    var classNames = {
+      slider: _ComponentsSlider2.default.slider,
+      icon: _ComponentsSlider2.default.icon,
+      mySlider: _ComponentsSlider2.default.mySlider,
+      'slider-next': _ComponentsSlider2.default['slider-next'],
+      'slider-prev': _ComponentsSlider2.default['slider-prev'],
+      'transition--0': _ComponentsSlider2.default['transition--0'],
+      slide: _ComponentsSlider2.default.slide,
+      'slider-list': _ComponentsSlider2.default['slider-list'],
+      'slider-track': _ComponentsSlider2.default['slider-track'],
+      'image-container': _ComponentsSlider2.default['image-container']
+    };
+  
+    // if item length 6 , we need to show 5 , then circularLength is 10.
     var circularLength = Math.ceil(items.length / noOfSlidesShown) * noOfSlidesShown;
     var paddingArr = new Array(circularLength - items.length);
     var circularItems = [].concat((0, _toConsumableArray3.default)(items), paddingArr);
-    // for making the slider look circular without jerk
     if (isCircular) {
       circularItems = [].concat((0, _toConsumableArray3.default)(circularItems.slice(circularItems.length - noOfSlidesShown, circularItems.length)), (0, _toConsumableArray3.default)(circularItems), (0, _toConsumableArray3.default)(circularItems.slice(0, noOfSlidesShown)));
+    }
+    if (styles) {
+      classNames['slider-next'] = styles['slider-next'];
+      classNames['slider-prev'] = styles['slider-prev'];
     }
     return _react2.default.createElement(_Slider2.default, {
       autoplay: autoplay,
       circularItems: circularItems,
-      classNames: (0, _extends3.default)({}, defaultClassNames, classNames),
+      className: _ComponentsSlider2.default.mySlider,
+      classNames: classNames,
       noOfSlidesShown: noOfSlidesShown,
       boundryIndexes: [1, circularItems.length - 1],
       incrementTranslationUnits: noOfSlidesShown,
-      isCircular: isCircular,
       onChangeHandler: onChangeHandler,
-      selectedIndex: selectedIndex
+      sliderWrap: sliderWrap,
+      isCircular: isCircular,
+      index: index
     });
   };
   ComponentsSlider.propTypes = {
     autoplay: _react.PropTypes.bool,
     noOfSlidesShown: _react.PropTypes.number,
     children: _react.PropTypes.array.isRequired,
-    classNames: _react.PropTypes.object,
-    selectedIndex: _react.PropTypes.number,
+    styles: _react.PropTypes.object,
+    onChangeHandler: _react.PropTypes.func,
+    sliderWrap: _react.PropTypes.bool,
     isCircular: _react.PropTypes.bool,
-    onChangeHandler: _react.PropTypes.func
+    index: _react.PropTypes.number
   };
   ComponentsSlider.defaultProps = {
     autoplay: false,
     noOfSlidesShown: 1,
-    classNames: defaultClassNames,
-    selectedIndex: 0,
-    isCircular: true,
+    sliderWrap: true,
+    isCircular: false,
+    index: 0,
     onChangeHandler: function onChangeHandler() {}
   };
   exports.default = (0, _withStyles2.default)(_ComponentsSlider2.default)(ComponentsSlider);
 
 /***/ },
-/* 58 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(59);
+      var content = __webpack_require__(58);
       var insertCss = __webpack_require__(45);
   
       if (typeof content === 'string') {
@@ -1796,7 +2428,7 @@ module.exports =
     
 
 /***/ },
-/* 59 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(44)();
@@ -1804,26 +2436,22 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/*\nWebsite to find color names corresponding to hash code\nhttp://chir.ag/projects/name-that-color/\nhttp://www.color-hex.com/color/da70d6\n */\n.ComponentsSlider_sliderContainer_3U5 {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: initial; }\n\n.ComponentsSlider_slider_1Z9 {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: visible; }\n  .ComponentsSlider_slider_1Z9 .ComponentsSlider_icon_16b.ComponentsSlider_slider-next_2xa,\n  .ComponentsSlider_slider_1Z9 .ComponentsSlider_icon_16b.ComponentsSlider_slider-prev_2aR {\n    opacity: 0; }\n  .ComponentsSlider_slider_1Z9:hover .ComponentsSlider_icon_16b.ComponentsSlider_slider-next_2xa,\n  .ComponentsSlider_slider_1Z9:hover .ComponentsSlider_icon_16b.ComponentsSlider_slider-prev_2aR {\n    opacity: 1; }\n\nimg {\n  max-width: 100%; }\n\n.ComponentsSlider_icon_16b {\n  width: 36px;\n  height: 36px;\n  position: absolute;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n      -ms-transform: translateY(-50%);\n       -o-transform: translateY(-50%);\n          transform: translateY(-50%);\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  background: #fff;\n  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);\n          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);\n  -webkit-transition: all 0.3s;\n  -o-transition: all 0.3s;\n  transition: all 0.3s;\n  border-radius: 18px;\n  z-index: 2;\n  opacity: 0;\n  cursor: pointer;\n  color: #666666; }\n\n.ComponentsSlider_icon_16b.ComponentsSlider_slider-next_2xa img {\n  max-width: 100%;\n  width: 10px; }\n\n.ComponentsSlider_icon_16b.ComponentsSlider_slider-prev_2aR img {\n  max-width: 100%;\n  width: 10px; }\n\n.ComponentsSlider_slider-prev-pos_7Su {\n  left: -18px; }\n\n.ComponentsSlider_slider-next-pos_HSR {\n  right: -18px; }\n\n.ComponentsSlider_icon_16b.ComponentsSlider_slider-next_2xa span::before {\n  content: '\\276F';\n  font-size: 20px;\n  line-height: 9px;\n  font-family: monospace; }\n\n.ComponentsSlider_icon_16b.ComponentsSlider_slider-prev_2aR span::before {\n  content: '\\276E';\n  font-size: 20px;\n  line-height: 9px;\n  font-family: monospace; }\n\n.ComponentsSlider_slide_2EK {\n  float: left;\n  height: 100%;\n  min-height: 1px;\n  width: initial !important; }\n\n.ComponentsSlider_slider-list_3sJ {\n  height: 100%;\n  overflow: hidden; }\n\n.ComponentsSlider_slider-track_IAN {\n  height: 100%;\n  position: relative; }\n\n.ComponentsSlider_image-container_3vQ {\n  width: 100%;\n  height: 100%;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n  .ComponentsSlider_image-container_3vQ a {\n    width: 100%; }\n\n.ComponentsSlider_transition--0_3xN {\n  -webkit-transition: none !important;\n  -o-transition: none !important;\n  transition: none !important; }\n", "", {"version":3,"sources":["/./components/ComponentsSlider/ComponentsSlider.scss"],"names":[],"mappings":"AAAA;;;;GAIG;AACH;EACE,mBAAmB;EACnB,YAAY;EACZ,aAAa;EACb,kBAAkB,EAAE;;AAEtB;EACE,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,kBAAkB,EAAE;EACpB;;IAEE,WAAW,EAAE;EACf;;IAEE,WAAW,EAAE;;AAEjB;EACE,gBAAgB,EAAE;;AAEpB;EACE,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,SAAS;EACT,oCAA4B;MAA5B,gCAA4B;OAA5B,+BAA4B;UAA5B,4BAA4B;EAC5B,qBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd,cAAc;EACd,0BAAoB;EAApB,4BAAoB;MAApB,uBAAoB;UAApB,oBAAoB;EACpB,yBAAwB;EAAxB,gCAAwB;MAAxB,sBAAwB;UAAxB,wBAAwB;EACxB,iBAAiB;EACjB,mDAA2C;UAA3C,2CAA2C;EAC3C,6BAAqB;EAArB,wBAAqB;EAArB,qBAAqB;EACrB,oBAAoB;EACpB,WAAW;EACX,WAAW;EACX,gBAAgB;EAChB,eAAe,EAAE;;AAEnB;EACE,gBAAgB;EAChB,YAAY,EAAE;;AAEhB;EACE,gBAAgB;EAChB,YAAY,EAAE;;AAEhB;EACE,YAAY,EAAE;;AAEhB;EACE,aAAa,EAAE;;AAEjB;EACE,iBAAiB;EACjB,gBAAgB;EAChB,iBAAiB;EACjB,uBAAuB,EAAE;;AAE3B;EACE,iBAAiB;EACjB,gBAAgB;EAChB,iBAAiB;EACjB,uBAAuB,EAAE;;AAE3B;EACE,YAAY;EACZ,aAAa;EACb,gBAAgB;EAChB,0BAA0B,EAAE;;AAE9B;EACE,aAAa;EACb,iBAAiB,EAAE;;AAErB;EACE,aAAa;EACb,mBAAmB,EAAE;;AAEvB;EACE,YAAY;EACZ,aAAa;EACb,+BAAuB;UAAvB,uBAAuB,EAAE;EACzB;IACE,YAAY,EAAE;;AAElB;EACE,oCAA4B;EAA5B,+BAA4B;EAA5B,4BAA4B,EAAE","file":"ComponentsSlider.scss","sourcesContent":["/*\nWebsite to find color names corresponding to hash code\nhttp://chir.ag/projects/name-that-color/\nhttp://www.color-hex.com/color/da70d6\n */\n.sliderContainer {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: initial; }\n\n.slider {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: visible; }\n  .slider .icon.slider-next,\n  .slider .icon.slider-prev {\n    opacity: 0; }\n  .slider:hover .icon.slider-next,\n  .slider:hover .icon.slider-prev {\n    opacity: 1; }\n\nimg {\n  max-width: 100%; }\n\n.icon {\n  width: 36px;\n  height: 36px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: #fff;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);\n  transition: all 0.3s;\n  border-radius: 18px;\n  z-index: 2;\n  opacity: 0;\n  cursor: pointer;\n  color: #666666; }\n\n.icon.slider-next img {\n  max-width: 100%;\n  width: 10px; }\n\n.icon.slider-prev img {\n  max-width: 100%;\n  width: 10px; }\n\n.slider-prev-pos {\n  left: -18px; }\n\n.slider-next-pos {\n  right: -18px; }\n\n.icon.slider-next span::before {\n  content: '\\276F';\n  font-size: 20px;\n  line-height: 9px;\n  font-family: monospace; }\n\n.icon.slider-prev span::before {\n  content: '\\276E';\n  font-size: 20px;\n  line-height: 9px;\n  font-family: monospace; }\n\n.slide {\n  float: left;\n  height: 100%;\n  min-height: 1px;\n  width: initial !important; }\n\n.slider-list {\n  height: 100%;\n  overflow: hidden; }\n\n.slider-track {\n  height: 100%;\n  position: relative; }\n\n.image-container {\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box; }\n  .image-container a {\n    width: 100%; }\n\n.transition--0 {\n  transition: none !important; }\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/*\nWebsite to find color names corresponding to hash code\nhttp://chir.ag/projects/name-that-color/\nhttp://www.color-hex.com/color/da70d6\n */\n.ComponentsSlider_mySlider_1lr {\n  position: relative;\n  width: 100%; }\n\n.ComponentsSlider_icon_16b {\n  width: 36px;\n  height: 36px;\n  position: absolute;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n      -ms-transform: translateY(-50%);\n       -o-transform: translateY(-50%);\n          transform: translateY(-50%);\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  background: #fff;\n  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);\n          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);\n  -webkit-transition: all 0.3s;\n  -o-transition: all 0.3s;\n  transition: all 0.3s;\n  border-radius: 18px;\n  z-index: 5;\n  opacity: 1;\n  cursor: pointer;\n  color: #909090; }\n\n.ComponentsSlider_icon_16b.ComponentsSlider_slider-next_2xa img {\n  max-width: 100%;\n  width: 10px; }\n\n.ComponentsSlider_icon_16b.ComponentsSlider_slider-prev_2aR img {\n  max-width: 100%;\n  width: 10px; }\n\n.ComponentsSlider_icon_16b.ComponentsSlider_slider-next_2xa {\n  right: -26px; }\n  .ComponentsSlider_icon_16b.ComponentsSlider_slider-next_2xa span::before {\n    content: '\\203A';\n    font-size: 30px;\n    line-height: 20px; }\n\n.ComponentsSlider_icon_16b.ComponentsSlider_slider-prev_2aR {\n  left: -26px; }\n  .ComponentsSlider_icon_16b.ComponentsSlider_slider-prev_2aR span::before {\n    content: '\\2039';\n    font-size: 30px;\n    line-height: 18px; }\n\n.ComponentsSlider_slide_2EK {\n  display: inline-block;\n  height: 100%;\n  min-height: 1px;\n  vertical-align: bottom; }\n\n.ComponentsSlider_slider-list_3sJ {\n  height: 100%;\n  overflow: hidden; }\n\n.ComponentsSlider_slider_1Z9 {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: visible; }\n  .ComponentsSlider_slider_1Z9 .ComponentsSlider_icon_16b.ComponentsSlider_slider-next_2xa,\n  .ComponentsSlider_slider_1Z9 .ComponentsSlider_icon_16b.ComponentsSlider_slider-prev_2aR {\n    opacity: 1; }\n\n.ComponentsSlider_slider-track_IAN {\n  height: 100%;\n  position: relative;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex; }\n", "", {"version":3,"sources":["/./components/ComponentsSlider/ComponentsSlider.scss"],"names":[],"mappings":"AAAA;;;;GAIG;AACH;EACE,mBAAmB;EACnB,YAAY,EAAE;;AAEhB;EACE,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,SAAS;EACT,oCAA4B;MAA5B,gCAA4B;OAA5B,+BAA4B;UAA5B,4BAA4B;EAC5B,qBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd,cAAc;EACd,0BAAoB;EAApB,4BAAoB;MAApB,uBAAoB;UAApB,oBAAoB;EACpB,yBAAwB;EAAxB,gCAAwB;MAAxB,sBAAwB;UAAxB,wBAAwB;EACxB,iBAAiB;EACjB,mDAA2C;UAA3C,2CAA2C;EAC3C,6BAAqB;EAArB,wBAAqB;EAArB,qBAAqB;EACrB,oBAAoB;EACpB,WAAW;EACX,WAAW;EACX,gBAAgB;EAChB,eAAe,EAAE;;AAEnB;EACE,gBAAgB;EAChB,YAAY,EAAE;;AAEhB;EACE,gBAAgB;EAChB,YAAY,EAAE;;AAEhB;EACE,aAAa,EAAE;EACf;IACE,iBAAiB;IACjB,gBAAgB;IAChB,kBAAkB,EAAE;;AAExB;EACE,YAAY,EAAE;EACd;IACE,iBAAiB;IACjB,gBAAgB;IAChB,kBAAkB,EAAE;;AAExB;EACE,sBAAsB;EACtB,aAAa;EACb,gBAAgB;EAChB,uBAAuB,EAAE;;AAE3B;EACE,aAAa;EACb,iBAAiB,EAAE;;AAErB;EACE,YAAY;EACZ,aAAa;EACb,mBAAmB;EACnB,kBAAkB,EAAE;EACpB;;IAEE,WAAW,EAAE;;AAEjB;EACE,aAAa;EACb,mBAAmB;EACnB,qBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd,cAAc,EAAE","file":"ComponentsSlider.scss","sourcesContent":["/*\nWebsite to find color names corresponding to hash code\nhttp://chir.ag/projects/name-that-color/\nhttp://www.color-hex.com/color/da70d6\n */\n.mySlider {\n  position: relative;\n  width: 100%; }\n\n.icon {\n  width: 36px;\n  height: 36px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: #fff;\n  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);\n  transition: all 0.3s;\n  border-radius: 18px;\n  z-index: 5;\n  opacity: 1;\n  cursor: pointer;\n  color: #909090; }\n\n.icon.slider-next img {\n  max-width: 100%;\n  width: 10px; }\n\n.icon.slider-prev img {\n  max-width: 100%;\n  width: 10px; }\n\n.icon.slider-next {\n  right: -26px; }\n  .icon.slider-next span::before {\n    content: '\\203A';\n    font-size: 30px;\n    line-height: 20px; }\n\n.icon.slider-prev {\n  left: -26px; }\n  .icon.slider-prev span::before {\n    content: '\\2039';\n    font-size: 30px;\n    line-height: 18px; }\n\n.slide {\n  display: inline-block;\n  height: 100%;\n  min-height: 1px;\n  vertical-align: bottom; }\n\n.slider-list {\n  height: 100%;\n  overflow: hidden; }\n\n.slider {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: visible; }\n  .slider .icon.slider-next,\n  .slider .icon.slider-prev {\n    opacity: 1; }\n\n.slider-track {\n  height: 100%;\n  position: relative;\n  display: flex; }\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
-  	"sliderContainer": "ComponentsSlider_sliderContainer_3U5",
-  	"slider": "ComponentsSlider_slider_1Z9",
+  	"mySlider": "ComponentsSlider_mySlider_1lr",
   	"icon": "ComponentsSlider_icon_16b",
   	"slider-next": "ComponentsSlider_slider-next_2xa",
   	"slider-prev": "ComponentsSlider_slider-prev_2aR",
-  	"slider-prev-pos": "ComponentsSlider_slider-prev-pos_7Su",
-  	"slider-next-pos": "ComponentsSlider_slider-next-pos_HSR",
   	"slide": "ComponentsSlider_slide_2EK",
   	"slider-list": "ComponentsSlider_slider-list_3sJ",
-  	"slider-track": "ComponentsSlider_slider-track_IAN",
-  	"image-container": "ComponentsSlider_image-container_3vQ",
-  	"transition--0": "ComponentsSlider_transition--0_3xN"
+  	"slider": "ComponentsSlider_slider_1Z9",
+  	"slider-track": "ComponentsSlider_slider-track_IAN"
   };
 
 /***/ },
-/* 60 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -1860,13 +2488,9 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _Slide = __webpack_require__(61);
+  var _Slide = __webpack_require__(60);
   
   var _Slide2 = _interopRequireDefault(_Slide);
-  
-  var _classnames = __webpack_require__(62);
-  
-  var _classnames2 = _interopRequireDefault(_classnames);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
@@ -1876,32 +2500,86 @@ module.exports =
     /**
      *
      * @param props
-     */
+       */
     function Slider(props) {
       (0, _classCallCheck3.default)(this, Slider);
   
       var _this = (0, _possibleConstructorReturn3.default)(this, (Slider.__proto__ || (0, _getPrototypeOf2.default)(Slider)).call(this, props));
   
-      _initialiseProps.call(_this);
+      _this.onTransitionEnd = function () {
+        var leftIndex = _this.state.leftIndex;
+        var _this$props = _this.props,
+            circularItems = _this$props.circularItems,
+            noOfSlidesShown = _this$props.noOfSlidesShown,
+            onChangeHandler = _this$props.onChangeHandler;
   
-      var _this$props = _this.props,
-          circularItems = _this$props.circularItems,
-          selectedIndex = _this$props.selectedIndex;
+        var sliderLength = circularItems.length;
+        if (_this.state.isLeft) {
+          leftIndex -= 1;
+          if (leftIndex <= -1 + _this.leftOffset) {
+            leftIndex = sliderLength / noOfSlidesShown - 1 - _this.leftOffset;
+          }
+        } else {
+          leftIndex += 1;
+          if ((leftIndex + _this.leftOffset) * noOfSlidesShown >= sliderLength) {
+            leftIndex = _this.leftOffset;
+          }
+        }
+        onChangeHandler((leftIndex - _this.leftOffset) * noOfSlidesShown);
+        _this.sliderTrack.removeEventListener('transitionend', _this.onTransitionEnd);
+        _this.updateItems(leftIndex);
+        _this.setState({
+          isAnimation: false,
+          leftIndex: leftIndex
+        });
+      };
   
-      var sliderLength = circularItems.length;
-      // On slide we will first load empty object in slider
-      // then load images in them
-      _this.itemsToRender = new Array(sliderLength).fill(null);
-      _this.translateLeft = 0;
+      _this.renderButton = function (_ref) {
+        var isLeft = _ref.isLeft,
+            className = _ref.className,
+            s = _ref.classNames;
+  
+        return _react2.default.createElement(
+          'div',
+          {
+            className: s.icon + ' ' + className,
+            onClick: function onClick() {
+              _this.onClick(isLeft);
+            }
+          },
+          _react2.default.createElement('span', null)
+        );
+      };
+  
+      _this.state = {
+        leftIndex: props.index,
+        isAnimation: false,
+        isLeft: true
+      };
       _this.leftOffset = 0;
       if (props.isCircular) {
+        _this.state.leftIndex++;
         _this.leftOffset++;
       }
-      _this.updateItems(selectedIndex);
       return _this;
     }
   
+    // For the first time, items to render needs to be updated
+  
+  
     (0, _createClass3.default)(Slider, [{
+      key: 'componentWillMount',
+      value: function componentWillMount() {
+        var circularItems = this.props.circularItems;
+  
+        var sliderLength = circularItems.length;
+        // On slide we will first load empty object in slider
+        // then load images in them
+        this.itemsToRender = new Array(sliderLength).fill(null);
+        this.translateLeft = 0;
+        this.updateItems(this.state.leftIndex);
+      }
+    }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
         var _this2 = this;
@@ -1912,45 +2590,43 @@ module.exports =
           }, 10000);
         }
       }
-    }, {
-      key: 'componentWillReceiveProps',
-  
   
       // This handles change in isVisible that comes from the parent. will not be called for others
       // because two separate arrays are maintained and the one showing is not coming from props.
+  
+    }, {
+      key: 'componentWillReceiveProps',
       value: function componentWillReceiveProps(nextProps) {
-        var selectedIndex = nextProps.selectedIndex;
-        var leftIndex = this.state.leftIndex;
-  
-  
-        if (selectedIndex !== leftIndex) {
-          leftIndex = selectedIndex + 1;
-          this.setState({ leftIndex: selectedIndex });
+        var index = this.state.leftIndex;
+        if (this.props.index !== nextProps.index) {
+          index = nextProps.index + 1;
+          this.setState({
+            leftIndex: index
+          });
         }
-        this.updateItems(leftIndex, nextProps);
+        this.updateItems(index, nextProps);
       }
     }, {
       key: 'componentDidUpdate',
       value: function componentDidUpdate() {
-        var onChangeHandler = this.props.onChangeHandler;
-        var _state = this.state,
-            isAnimation = _state.isAnimation,
-            leftIndex = _state.leftIndex;
-  
-  
-        onChangeHandler(leftIndex);
-  
-        if (isAnimation) {
+        if (this.state.isAnimation) {
           this.sliderTrack.addEventListener('transitionend', this.onTransitionEnd, false);
+        }
+      }
+    }, {
+      key: 'componentWillUnmount',
+      value: function componentWillUnmount() {
+        if (this.props.autoplay) {
+          clearInterval(this.interval);
         }
       }
     }, {
       key: 'onClick',
       value: function onClick(isLeft) {
+        this.transitionDelay = false;
         if (!this.state.isAnimation) {
-          var _props = this.props,
-              circularItems = _props.circularItems,
-              noOfSlidesShown = _props.noOfSlidesShown;
+          var circularItems = this.props.circularItems;
+          var noOfSlidesShown = this.props.noOfSlidesShown;
   
           var sliderLength = circularItems.length;
           var sliderItemWidth = 100 / sliderLength;
@@ -1959,7 +2635,7 @@ module.exports =
           if (isLeft) {
             multiplier = 1;
           }
-          if (!this.props.isCircular) {
+          if (!this.props.isCircular && !this.props.sliderWrap) {
             noOfSlidesShown = this.getNumberShown(isLeft, this.state.leftIndex);
           }
           this.translateLeft = multiplier * noOfSlidesShown * sliderItemWidth;
@@ -1976,9 +2652,9 @@ module.exports =
   
       // function to get the number of items to be shifted
       value: function getNumberShown(isLeft, index) {
-        var _props2 = this.props,
-            circularItems = _props2.circularItems,
-            noOfSlidesShown = _props2.noOfSlidesShown;
+        var _props = this.props,
+            circularItems = _props.circularItems,
+            noOfSlidesShown = _props.noOfSlidesShown;
   
         var idx = index;
         var sliderLength = circularItems.length;
@@ -2003,9 +2679,9 @@ module.exports =
     }, {
       key: 'getLeft',
       value: function getLeft() {
-        var _state2 = this.state,
-            isLeft = _state2.isLeft,
-            isAnimation = _state2.isAnimation;
+        var _state = this.state,
+            isLeft = _state.isLeft,
+            isAnimation = _state.isAnimation;
         var leftIndex = this.state.leftIndex;
         var noOfSlidesShown = this.props.noOfSlidesShown;
   
@@ -2042,76 +2718,71 @@ module.exports =
         }
       }
     }, {
-      key: 'componentWillUnmount',
-      value: function componentWillUnmount() {
-        if (this.props.autoplay) {
-          clearInterval(this.interval);
-        }
-      }
-    }, {
       key: 'render',
       value: function render() {
         var _this3 = this;
   
-        var _props3 = this.props,
-            circularItems = _props3.circularItems,
-            noOfSlidesShown = _props3.noOfSlidesShown,
-            s = _props3.classNames,
-            isCircular = _props3.isCircular;
+        var _props2 = this.props,
+            circularItems = _props2.circularItems,
+            noOfSlidesShown = _props2.noOfSlidesShown,
+            s = _props2.classNames,
+            isCircular = _props2.isCircular;
   
         var sliderLength = circularItems.length;
         var leftVal = this.getLeft();
         var sliderTrackWidth = sliderLength / noOfSlidesShown * 100 + '%';
-        var _state3 = this.state,
-            isAnimation = _state3.isAnimation,
-            leftIndex = _state3.leftIndex;
+        var isAnimation = this.state.isAnimation;
   
-        var sliderActualLength = sliderLength / noOfSlidesShown - 1;
         var sliderTrackStyle = {
           width: sliderTrackWidth,
-          left: leftIndex * -100 + '%'
+          left: leftVal + '%'
         };
         if (isAnimation) {
           sliderTrackStyle = (0, _extends3.default)({}, sliderTrackStyle, {
             transform: 'translate3d(' + this.translateLeft + '%,0px,0px)',
-            transition: 'transform 0.7s ease-in-out'
+            transitionDelay: this.transitionDelay ? '1.5s' : '0s',
+            transition: 'transform 0.7s ease-out'
           });
         }
         return _react2.default.createElement(
           'div',
-          { className: s.slider },
-          (isCircular || this.state.leftIndex < sliderActualLength) && this.renderButton({
-            isLeft: false,
-            className: (0, _classnames2.default)(s['slider-next'], s['slider-next-pos']),
-            classNames: s
-          }),
-          (isCircular || this.state.leftIndex > 0) && this.renderButton({
-            isLeft: true,
-            className: (0, _classnames2.default)(s['slider-prev'], s['slider-prev-pos']),
-            classNames: s
-          }),
+          { className: s.mySlider },
           _react2.default.createElement(
             'div',
-            { className: s['slider-list'] },
+            { className: s.slider },
+            (isCircular || this.state.leftIndex < sliderLength / noOfSlidesShown - 1) && this.renderButton({
+              isLeft: false,
+              className: s['slider-next'],
+              classNames: s
+            }),
+            (isCircular || this.state.leftIndex > 0) && this.renderButton({
+              isLeft: true,
+              className: s['slider-prev'],
+              classNames: s
+            }),
             _react2.default.createElement(
               'div',
-              {
-                className: s['slider-track'],
-                style: sliderTrackStyle,
-                ref: function ref(c) {
-                  _this3.sliderTrack = c;
-                }
-              },
-              this.itemsToRender.map(function (component, i) {
-                return (isCircular || component) && _react2.default.createElement(
-                  _Slide2.default,
-                  {
-                    classNames: s, key: 'image-' + i,
-                    sliderLength: sliderLength
-                  },
-                  component
-                );
-              })
+              { className: s['slider-list'] },
+              _react2.default.createElement(
+                'div',
+                {
+                  className: s['slider-track'],
+                  style: sliderTrackStyle,
+                  ref: function ref(c) {
+                    _this3.sliderTrack = c;
+                  }
+                },
+                this.itemsToRender.map(function (component, i) {
+                  return (isCircular || component) && _react2.default.createElement(
+                    _Slide2.default,
+                    {
+                      classNames: s, key: 'image-' + i,
+                      sliderLength: sliderLength
+                    },
+                    component
+                  );
+                })
+              )
             )
           )
         );
@@ -2120,81 +2791,25 @@ module.exports =
     return Slider;
   }(_react.Component);
   
-  var _initialiseProps = function _initialiseProps() {
-    var _this4 = this;
-  
-    this.state = {
-      leftIndex: this.props.selectedIndex,
-      isAnimation: false
-    };
-  
-    this.onTransitionEnd = function () {
-      var leftIndex = _this4.state.leftIndex;
-      var _props4 = _this4.props,
-          circularItems = _props4.circularItems,
-          noOfSlidesShown = _props4.noOfSlidesShown,
-          onChangeHandler = _props4.onChangeHandler;
-  
-      var sliderLength = circularItems.length;
-      if (_this4.state.isLeft) {
-        leftIndex -= 1;
-        if (leftIndex <= -1 + _this4.leftOffset) {
-          leftIndex = sliderLength / noOfSlidesShown - 1 - _this4.leftOffset;
-        }
-      } else {
-        leftIndex += 1;
-        if ((leftIndex + _this4.leftOffset) * noOfSlidesShown >= sliderLength) {
-          leftIndex = _this4.leftOffset;
-        }
-      }
-      onChangeHandler((leftIndex - _this4.leftOffset) * noOfSlidesShown);
-      _this4.sliderTrack.removeEventListener('transitionend', _this4.onTransitionEnd);
-      _this4.updateItems(leftIndex);
-      _this4.setState({
-        isAnimation: false,
-        leftIndex: leftIndex
-      });
-    };
-  
-    this.renderButton = function (_ref) {
-      var isLeft = _ref.isLeft,
-          className = _ref.className,
-          s = _ref.classNames;
-  
-      return _react2.default.createElement(
-        'div',
-        {
-          className: className + ' ' + s.icon,
-          onClick: function onClick() {
-            _this4.onClick(isLeft);
-          }
-        },
-        _react2.default.createElement('span', null)
-      );
-    };
-  };
-  
   Slider.propTypes = {
     circularItems: _react.PropTypes.array,
     noOfSlidesShown: _react.PropTypes.number,
     isCircular: _react.PropTypes.bool,
     autoplay: _react.PropTypes.bool,
     classNames: _react.PropTypes.object,
-    selectedIndex: _react.PropTypes.number,
-    onChangeHandler: _react.PropTypes.func
+    onChangeHandler: _react.PropTypes.func,
+    sliderWrap: _react.PropTypes.bool,
+    index: _react.PropTypes.number
   };
   Slider.defaultProps = {
     circularItems: [],
     noOfSlidesShown: 3,
-    isCircular: false,
-    autoplay: false,
-    selectedIndex: 1,
     onChangeHandler: function onChangeHandler() {}
   };
   exports.default = Slider;
 
 /***/ },
-/* 61 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2229,11 +2844,7 @@ module.exports =
     return _react2.default.createElement(
       'div',
       { className: s.slide, style: slideStyle },
-      _react2.default.createElement(
-        'div',
-        { className: s['image-container'] },
-        children
-      )
+      children
     );
   };
   
@@ -2246,13 +2857,7 @@ module.exports =
   exports.default = Slide;
 
 /***/ },
-/* 62 */
-/***/ function(module, exports) {
-
-  module.exports = require("classnames");
-
-/***/ },
-/* 63 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2261,7 +2866,7 @@ module.exports =
     value: true
   });
   
-  var _utils = __webpack_require__(64);
+  var _utils = __webpack_require__(62);
   
   var _react = __webpack_require__(31);
   
@@ -2271,7 +2876,7 @@ module.exports =
   
   var _App2 = _interopRequireDefault(_App);
   
-  var _ErrorPage = __webpack_require__(67);
+  var _ErrorPage = __webpack_require__(66);
   
   var _ErrorPage2 = _interopRequireDefault(_ErrorPage);
   
@@ -2307,7 +2912,7 @@ module.exports =
   };
 
 /***/ },
-/* 64 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2321,16 +2926,16 @@ module.exports =
   
   var _extends3 = _interopRequireDefault(_extends2);
   
-  var _keys = __webpack_require__(65);
+  var _keys = __webpack_require__(63);
   
   var _keys2 = _interopRequireDefault(_keys);
   
   exports.stringifyQueryParams = stringifyQueryParams;
   exports.getParameterByName = getParameterByName;
   
-  var _urls = __webpack_require__(51);
+  var _urls = __webpack_require__(64);
   
-  var _qs = __webpack_require__(66);
+  var _qs = __webpack_require__(65);
   
   var _qs2 = _interopRequireDefault(_qs);
   
@@ -2387,19 +2992,30 @@ module.exports =
   var addExtraParams = exports.addExtraParams = function addExtraParams(url) {};
 
 /***/ },
-/* 65 */
+/* 63 */
 /***/ function(module, exports) {
 
   module.exports = require("babel-runtime/core-js/object/keys");
 
 /***/ },
-/* 66 */
+/* 64 */
+/***/ function(module, exports) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var fbSearchUrl = exports.fbSearchUrl = 'https://graph.facebook.com/search';
+
+/***/ },
+/* 65 */
 /***/ function(module, exports) {
 
   module.exports = require("qs");
 
 /***/ },
-/* 67 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2416,7 +3032,7 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _ErrorPage = __webpack_require__(68);
+  var _ErrorPage = __webpack_require__(67);
   
   var _ErrorPage2 = _interopRequireDefault(_ErrorPage);
   
@@ -2465,11 +3081,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_ErrorPage2.default)(ErrorPage);
 
 /***/ },
-/* 68 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(69);
+      var content = __webpack_require__(68);
       var insertCss = __webpack_require__(45);
   
       if (typeof content === 'string') {
@@ -2499,7 +3115,7 @@ module.exports =
     
 
 /***/ },
-/* 69 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(44)();
@@ -2513,10 +3129,16 @@ module.exports =
 
 
 /***/ },
-/* 70 */
+/* 69 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
+
+/***/ },
+/* 70 */
+/***/ function(module, exports) {
+
+  module.exports = require("memoizee");
 
 /***/ },
 /* 71 */
@@ -3160,6 +3782,24 @@ module.exports =
     jade.rethrow(err, jade_debug[0].filename, jade_debug[0].lineno, "doctype html\nhtml(lang=\"en\")\n  head\n    meta(charset=\"utf-8\")\n    title Internal Server Error\n    meta(name=\"viewport\", content=\"width=device-width, initial-scale=1\")\n    style.\n      * {\n        line-height: 1.2;\n        margin: 0;\n      }\n\n      html {\n        color: #888;\n        display: table;\n        font-family: sans-serif;\n        height: 100%;\n        text-align: center;\n        width: 100%;\n      }\n\n      body {\n        display: table-cell;\n        vertical-align: middle;\n        margin: 2em auto;\n      }\n\n      h1 {\n        color: #555;\n        font-size: 2em;\n        font-weight: 400;\n      }\n\n      p {\n        margin: 0 auto;\n        width: 280px;\n      }\n\n      pre {\n        text-align: left;\n        margin-top: 2rem;\n      }\n\n      @media only screen and (max-width: 280px) {\n\n        body, p {\n          width: 95%;\n        }\n\n        h1 {\n          font-size: 1.5em;\n          margin: 0 0 0.3em;\n        }\n\n      }\n\n  body\n    h1 Internal Server Error\n    p Sorry, something went wrong.\n    pre= stack\n// IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx\n");
   }
   }
+
+/***/ },
+/* 75 */
+/***/ function(module, exports) {
+
+  module.exports = require("lodash/at");
+
+/***/ },
+/* 76 */
+/***/ function(module, exports) {
+
+  module.exports = require("lodash/get");
+
+/***/ },
+/* 77 */
+/***/ function(module, exports) {
+
+  module.exports = require("lodash/includes");
 
 /***/ }
 /******/ ]);
