@@ -114,7 +114,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                         {_.includes(['0', '2'], purchasingChannelCode) &&
                         <button className={s.right}>PICK UP IN STORE</button>}
                     </div>
-                    <div className={s.row} onClick={() => this.setState({clicked: !clicked})}>
+                    <div className={cx(s.row,s.shrink)} onClick={() => this.setState({clicked: !clicked})}>
                         <div className={s.returns}>Returns</div>
                         <div className={cx({
                             [s.clicked]: clicked,

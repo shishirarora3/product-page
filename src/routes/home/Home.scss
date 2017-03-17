@@ -43,7 +43,8 @@
 }
 .rightSide{
   @extend .column;
-  line-height: 1.4em;
+  //line-height: 1.4em;
+  flex-shrink:0;
 }
 
 .buttonGroup{
@@ -83,7 +84,7 @@
     content: '...view more';
     position: absolute;
     right: 0;
-    top: 3.5em;
+    top: 4em;
     background: $White;
     font-size: 0.8em;
     color: $Cerulean;
@@ -130,4 +131,7 @@
   text-align: center;
   background: $greyBG;
   color:$White;
+}
+.shrink{
+  flex-shrink: 30;
 }
