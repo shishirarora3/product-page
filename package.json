@@ -152,19 +152,13 @@
   "scripts": {
     "babel": "babel-node --presets react,es2015,stage-0",
     "test": "npm run babel -- ./node_modules/karma/bin/karma start karma.conf.js  --require test/setup.js",
-    "eslint": "eslint src tools",
-    "stylelint": "stylelint \"src/**/*.*css\"",
-    "styleimportcheck": "babel-node tools/styleImportChecker.js",
-    "lint": "npm run eslint && npm run stylelint",
     "watch:test": "npm test -- --auto-watch --no-single-run",
     "clean": "babel-node tools/run clean",
     "copy": "babel-node tools/run copy",
     "bundle": "babel-node tools/run bundle",
     "build": "babel-node tools/run build",
     "render": "babel-node tools/run render",
-    "start": "babel-node tools/run start",
-    "prod_local": "npm run build -- --release && pm2 start ./build/server.js -n 'paytmMarketPlace' -i 2",
-    "reload": "bash \"./bin/deploy\" && touch \"./public/system/restart\""
+    "start": "babel-node tools/run start"
   },
   "repository": {
     "type": "git",
