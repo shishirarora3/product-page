@@ -89,3 +89,32 @@
   content: '|';
   padding: 0 0.5em;
 }
+
+.quantity{
+  @extend .row;
+  border: 1px solid $greyBG;
+  align-items: center;
+  justify-content: space-between;
+  height: 1.5em;
+  padding: 0.5em;
+  width:50%;
+  margin:1em 0;
+  input{
+    width:2em;
+    height:2em;
+    padding:0.2em;
+    border:0;
+  }
+}
+
+.circle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  background: $greyBG;
+  color:$White;
+}

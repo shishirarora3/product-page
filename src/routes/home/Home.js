@@ -7,7 +7,7 @@ import cx from 'classnames';
 
 class Home extends Component { // eslint-disable-line react/prefer-stateless-function
 
-    constructor(props,{setTitle, setMeta}){
+    constructor(props, {setTitle, setMeta}) {
         super(props);
         const CatalogEntryView = _.get(props.data, 'CatalogEntryView[0]');
         const title = this.title = CatalogEntryView.title;
@@ -15,14 +15,25 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
         setMeta(title);
     }
 
-    state = {selectedIndex: 0,
-        clicked: false};
+    state = {
+        selectedIndex: 0,
+        clicked: false,
+        value: 1
+    };
 
     onChangeHandler = selectedIndex => this.setState({selectedIndex});
 
+    onValueChange = (newValue) => {
+        newValue = newValue > 0 ? newValue : this.state.value;
+        this.setState(
+            {
+                value: newValue
+            })
+    };
+
     render() {
 
-        const {selectedIndex, clicked} = this.state;
+        const {selectedIndex, clicked, value} = this.state;
         const data = this.props.data;
         const imageList = _.get(data, 'CatalogEntryView[0].Images[0].AlternateImages', []).map(i => _.get(i, 'image'));
         const CatalogEntryView = _.get(data, 'CatalogEntryView[0]');
@@ -76,16 +87,34 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                 <div className={s.rightSide}>
                     <div className={s.price}>{formattedPriceValue}<sub>{priceQualifier}</sub></div>
                     <div className={s.hr}/>
-                        <div>{_.map(Promotions, (p, i) => <div
-                            key={i}>{_.get(p, 'Description[0].shortDescription')}</div>)}
-                        </div>
-                    <div className={s.hr}/>
-                    <input type="number" min={1}/>
-                    <div className={s.buttonGroup}>
-                        {_.includes(['0', '1'], purchasingChannelCode) && <button className={s.left}>ADD TO CART</button>}
-                        {_.includes(['0', '2'], purchasingChannelCode) && <button className={s.right}>PICK UP IN STORE</button>}
+                    <div>{_.map(Promotions, (p, i) => <div
+                        key={i}>{_.get(p, 'Description[0].shortDescription')}</div>)}
                     </div>
-                    <div className={s.row} onClick={()=>this.setState({clicked: !clicked})}>
+                    <div className={s.hr}/>
+                    <div className={s.quantity}>
+                        <div>quantity:</div>
+                        <div className={s.circle}
+                             onClick={() => this.onValueChange(value - 1)}>-</div>
+                        <input
+                            type="number"
+                            value={value}
+                            min={1}
+                            onChange={(e) => {
+                                let newValue = _.get(e, 'target.value', value);
+                                this.onValueChange(+newValue);
+                            }}
+                        />
+                        <div
+                            className={s.circle}
+                            onClick={() => this.onValueChange(value + 1)}>+</div>
+                    </div>
+                    <div className={s.buttonGroup}>
+                        {_.includes(['0', '1'], purchasingChannelCode) &&
+                        <button className={s.left}>ADD TO CART</button>}
+                        {_.includes(['0', '2'], purchasingChannelCode) &&
+                        <button className={s.right}>PICK UP IN STORE</button>}
+                    </div>
+                    <div className={s.row} onClick={() => this.setState({clicked: !clicked})}>
                         <div className={s.returns}>Returns</div>
                         <div className={cx({
                             [s.clicked]: clicked,
@@ -104,7 +133,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
 
 }
 
-Home.contextTypes={
+Home.contextTypes = {
     setTitle: PropTypes.func.isRequired,
     setMeta: PropTypes.func.isRequired
 }
