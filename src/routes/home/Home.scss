@@ -78,6 +78,16 @@
 .dots{
   overflow: hidden;
   height: 4em;
+  position: relative;
+  &:after{
+    content: '...view more';
+    position: absolute;
+    right: 0;
+    top: 3.5em;
+    background: $White;
+    font-size: 0.8em;
+    color: $Cerulean;
+  }
   p{
     margin:0;
   }
